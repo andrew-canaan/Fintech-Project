@@ -1,0 +1,20 @@
+#### Links for API's, DB's, wikis, or other useful tid bits ####
+
+Google Doc:
+    1. https://docs.google.com/document/d/1bNz20yd7FSeETAmL2KfGVrWhXuD9NxKnkU-oCJPEVvM/edit
+
+Links:
+1. SEC API for Filings Querying
+    a. https://pypi.org/project/sec-api/
+
+2. Python Stock Screener For Finance (tutorial)
+    a. https://www.youtube.com/watch?v=myFD0np9eys&list=PLPfme2mwsQ1FQhH1icKEfiYdLSUHE-Wo5&index=1
+
+3. Financial Modeling API
+    a. https://site.financialmodelingprep.com/developer
+
+4. Alpha Vantage API for Forex, ETF, mutual funds in real-time
+    a. https://www.alphavantage.co/
+
+5. List of Financial Data API's
+    a. https://www.g2.com/categories/financial-data-apis

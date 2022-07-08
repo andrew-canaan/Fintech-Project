@@ -24,3 +24,5 @@ Links:
     
 7. Learn Python for free with Codeacademy
     a. https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/welcome
+    
+8. Google Trends to Analyze Public Interest in Stock Screeners

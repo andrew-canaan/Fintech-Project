@@ -26,3 +26,4 @@ Links:
     a. https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/welcome
     
 8. Google Trends to Analyze Public Interest in Stock Screeners
+    a. https://trends.google.com/trends/explore?q=stock%20screener&geo=US

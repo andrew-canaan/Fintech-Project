@@ -18,3 +18,9 @@ Links:
 
 5. List of Financial Data API's
     a. https://www.g2.com/categories/financial-data-apis
+    
+6. Website Builder through Budibase !!
+    a. https://budibase.com/business-apps/
+    
+7. Learn Python for free with Codeacademy
+    a. https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/welcome

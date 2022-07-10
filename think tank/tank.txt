@@ -18,3 +18,15 @@ Links:
 
 5. List of Financial Data API's
     a. https://www.g2.com/categories/financial-data-apis
+    
+6. Website Builder through Budibase !!
+    a. https://budibase.com/business-apps/
+    
+7. Blog Post - How to build a web app
+    a. https://budibase.com/blog/how-to-make-a-web-app/
+    
+8. Learn Python for free with Codeacademy
+    a. https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/welcome
+    
+9. Google Trends to Analyze Public Interest in Stock Screeners
+    a. https://trends.google.com/trends/explore?q=stock%20screener&geo=US

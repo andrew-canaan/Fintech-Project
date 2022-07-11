@@ -2,6 +2,9 @@
 
 Google Doc:
     1. https://docs.google.com/document/d/1bNz20yd7FSeETAmL2KfGVrWhXuD9NxKnkU-oCJPEVvM/edit
+    
+API Keys:
+    1. AlphaVantage Free Key: TJOCDKQ1PCX3BW7T
 
 Links:
 1. SEC API for Filings Querying

@@ -1,0 +1,46 @@
+V1 Criteria (likely can all be accessed via API we have now):
+Standard Screener Criteria:
+Market Cap
+Price
+EPS
+P/E Ratio
+PEG Ratio
+Beta
+Industry
+& Sector
+Volume (can be 14-day moving avg, etc)
+Dividend (Y/N)
+Earnings Date? (some screeners have this, but it might not be necessary)
+
+
+
+V2 Criteria (likely will need EDGAR API & some calculation)
+Price Ratios:
+P/S
+P/B
+P/C
+P/FCF
+
+
+Profitability Ratios:
+ROA
+ROE
+ROI
+Gross Margin
+Operating Margin
+Profit Margin
+
+Liquidity Ratios:
+Current Ratio
+Quick Ratio
+LTD/Equity
+Debt/Equity
+
+
+Other Greeks:
+Alpha
+Delta
+Gamma
+Vega
+Theta
+Rho

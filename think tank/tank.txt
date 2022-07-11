@@ -33,3 +33,6 @@ Links:
     
 9. Google Trends to Analyze Public Interest in Stock Screeners
     a. https://trends.google.com/trends/explore?q=stock%20screener&geo=US
+
+10. Requests Pylib documentation
+    a. https://requests.readthedocs.io/en/latest/

@@ -6,6 +6,10 @@ Google Doc:
 API Keys:
     1. AlphaVantage Free Key: TJOCDKQ1PCX3BW7T
 
+Stack Overflow:
+1. get_data_yahoo not working
+    a. https://stackoverflow.com/questions/72225385/python-finance-get-data-yahoo-not-retrieving-data
+
 Links:
 1. SEC API for Filings Querying
     a. https://pypi.org/project/sec-api/
@@ -34,9 +38,8 @@ Links:
 9. Google Trends to Analyze Public Interest in Stock Screeners
     a. https://trends.google.com/trends/explore?q=stock%20screener&geo=US
 
-Stack Overflow:
-1. get_data_yahoo not working
-    a. https://stackoverflow.com/questions/72225385/python-finance-get-data-yahoo-not-retrieving-data
-
 10. Requests Pylib documentation
     a. https://requests.readthedocs.io/en/latest/
+
+11. yahoo_fin lib doc
+    a. http://theautomatic.net/yahoo_fin-documentation/

@@ -9,7 +9,9 @@ import os
 from pandas import ExcelWriter
 
 def get_stocklist(filepath): 
-    return pd.read_excel(filepath)
+    stocklist = pd.read_excel(filepath)
+    return stocklist.head(1000)
+
 
 def apply_mark_minervi(stock, close, sma_50, sma_150, sma_200, sma_200_adj, 
                        wk52_low, wk52_high, rs_rating, exportlist):
@@ -41,12 +43,10 @@ def apply_mark_minervi(stock, close, sma_50, sma_150, sma_200, sma_200_adj,
         cond8 = True
     
     if cond1 and cond2 and cond3 and cond4 and cond5 and cond6 and cond7 and cond8:
-        print(str(stock) + "\n")
         return exportlist.append({'Stock': stock, "RS_Rating": rs_rating, "50 Day MA": sma_50, 
                                   "150 Day Ma": sma_150, "200 Day MA": sma_200, "52 Week Low": wk52_low, 
                                   "52 week High": wk52_high}, ignore_index=True)
     else:
-        print("fail\n")
         return exportlist
 
 def process_stocklist(stocklist, exportlist, start, end):
@@ -54,40 +54,40 @@ def process_stocklist(stocklist, exportlist, start, end):
         stock = str(stocklist["Symbol"][n])
         rs_rating = str(stocklist["RS Rating"][n])
 
-    try:
-        yahoo_df = pdr.get_data_yahoo(stock, start, end)
-
-        sma_arr = [50, 150, 200]
-        for sma in sma_arr:
-            # add SMA columns for each SMA to the data frame
-            yahoo_df["SMA_" + str(sma)] = round(yahoo_df.iloc[:,4].rolling(window = sma).mean(), 2)
-        
-        #-1 is most recent value in yahoo dataframe
-        close = yahoo_df["Adj Close"][-1] 
-        sma_50 = yahoo_df["SMA_50"][-1]
-        sma_150 = yahoo_df["SMA_150"][-1]
-        sma_200 = yahoo_df["SMA_200"][-1]
-
-        # min value of the previous 260 trading days (52 weeks)
-        wk52_low = min(yahoo_df["Adj Close"][-260:])
-        wk52_high = max(yahoo_df["Adj Close"][-260:])
-
         try:
-            # Grab the sma 200 that has been trending upward for at least 20 days per the Mark Minervi algo
-            sma_200_adj = yahoo_df["SMA_200"][-20]
-        except Exception:
-            sma_200_adj = 0 
+            yahoo_df = pdr.get_data_yahoo(stock, start, end)
 
-        apply_mark_minervi(stock, sma_50, sma_150, sma_200, sma_200_adj, 
-                           wk52_low, wk52_high, rs_rating, exportlist)
-        
-    except Exception:
-        print("No data on " + stock + "\n")
+            sma_arr = [50, 150, 200]
+            for sma in sma_arr:
+                # add SMA columns for each SMA to the data frame
+                yahoo_df["SMA_" + str(sma)] = round(yahoo_df.iloc[:,4].rolling(window = sma).mean(), 2)
+            
+            #-1 is most recent value in yahoo dataframe
+            close = yahoo_df["Adj Close"][-1] 
+            sma_50 = yahoo_df["SMA_50"][-1]
+            sma_150 = yahoo_df["SMA_150"][-1]
+            sma_200 = yahoo_df["SMA_200"][-1]
+
+            # min value of the previous 260 trading days (52 weeks)
+            wk52_low = min(yahoo_df["Adj Close"][-260:])
+            wk52_high = max(yahoo_df["Adj Close"][-260:])
+
+            try:
+                # Grab the sma 200 that has been trending upward for at least 20 days per the Mark Minervi algo
+                sma_200_adj = yahoo_df["SMA_200"][-20]
+            except Exception:
+                sma_200_adj = 0 
+
+            apply_mark_minervi(stock, sma_50, sma_150, sma_200, sma_200_adj, 
+                            wk52_low, wk52_high, rs_rating, exportlist)
+            
+        except Exception:
+            print("No data on " + stock + "\n")
 
 # main
 yf.pdr_override()
-start = dt.datetime(2017, 12, 1) 
-end = dt.datetime(2020, 2, 1)
+start = dt.datetime(2017, 1, 1) 
+end = dt.datetime.now()
 
 filepath = r"C:\Users\Andrew Canaan\Documents\repos\Fintech-Project\think tank\RichardStocks.xlsx"
 stocklist = get_stocklist(filepath)
@@ -97,7 +97,7 @@ exportlist = pd.DataFrame(columns=['Stock', "RS_Rating", "50 Day MA", "150 Day M
 
 exportlist = process_stocklist(stocklist, exportlist, start, end)
 
-print(exportlist)
+print(exportlist.head())
 
 
 

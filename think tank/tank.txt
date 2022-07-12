@@ -14,8 +14,8 @@ Links:
 1. SEC API for Filings Querying
     a. https://pypi.org/project/sec-api/
 
-2. Python Stock Screener For Finance (tutorial)
-    a. https://www.youtube.com/watch?v=myFD0np9eys&list=PLPfme2mwsQ1FQhH1icKEfiYdLSUHE-Wo5&index=1
+2. Python Stock Screener For Mark Minervini Structure (tutorial)
+    a. https://towardsdatascience.com/making-a-stock-screener-with-python-4f591b198261
 
 3. Financial Modeling API
     a. https://site.financialmodelingprep.com/developer

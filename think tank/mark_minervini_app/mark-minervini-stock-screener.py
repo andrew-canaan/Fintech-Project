@@ -13,7 +13,7 @@ import os
 yf.pdr_override()
 
 # Grab all the tickers off the S&P 500 index using stock info
-tickers = si.tickers_sp500()
+tickers = si.tickers_nasdaq()
 
 # replace any tickers that have a '.' with a '-' if they exist
 tickers = [item.replace(".", "-") for item in tickers]
@@ -34,18 +34,22 @@ index_data["% Change"] = index_data["Adj Close"].pct_change()
 index_return = (index_data["% Change"] + 1).cumprod()[-1]
 
 for ticker in tickers:
-    stock_data = web.get_data_yahoo(ticker, start_date, end_date)
-    stock_data.to_csv(f'{ticker}.csv')
+    try:
+        stock_data = web.get_data_yahoo(ticker, start_date, end_date)
+        stock_data.to_csv(f'{ticker}.csv')
 
-    # Add % change column stock data frame, based on the % change of previous adj close price to curr adj close
-    stock_data["% Change"] = stock_data["Adj Close"].pct_change()
+        # Add % change column stock data frame, based on the % change of previous adj close price to curr adj close
+        stock_data["% Change"] = stock_data["Adj Close"].pct_change()
 
-    # Calculate % return on given stock by summing the cumulative % change. Returns a scalar decimal value
-    # Exclude the first day as it has no value for % change
-    stock_return = (stock_data["% Change"] + 1).cumprod()[-1]
+        # Calculate % return on given stock by summing the cumulative % change. Returns a scalar decimal value
+        # Exclude the first day as it has no value for % change
+        stock_return = (stock_data["% Change"] + 1).cumprod()[-1]
 
-    returns_multiple = round((stock_return / index_return), 2)
-    returns_multiples.extend([returns_multiple])
+        returns_multiple = round((stock_return / index_return), 2)
+        returns_multiples.extend([returns_multiple])
+    except Exception as e:
+        print(e)
+        print(f'Failed to calculate % change on {ticker}...')
 
     #print(f'Ticker: {ticker}; Returns Multiple against NASDAQ: {returns_multiple}\n')
     time.sleep(0.01)

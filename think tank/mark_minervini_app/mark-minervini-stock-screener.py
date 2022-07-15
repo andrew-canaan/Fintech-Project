@@ -12,7 +12,7 @@ import os
  
 yf.pdr_override()
 
-# Grab all the tickers off the S&P 500 index using stock info
+# Grab all the tickers off the NASDAQ index using stock info
 tickers = si.tickers_nasdaq()
 
 # replace any tickers that have a '.' with a '-' if they exist
@@ -23,7 +23,7 @@ tickers = tickers[0:100] # grab just the first 100 tickers out of 5k+ NASDAQ lis
 start_date = datetime.datetime.now() - datetime.timedelta(days = 365)
 end_date = datetime.date.today()
 
-exportList = pd.DataFrame(columns=['Stock', "RS_Rating", "50 Day MA", "150 Day Ma", "200 Day MA", "52 Week Low", "52 week High"])
+exportList = pd.DataFrame(columns=['Stock', "RS_Rating","Current Close", "50 Day MA", "150 Day Ma", "200 Day MA", "52 Week Low", "52 week High"])
 
 returns_multiples = []
 
@@ -109,7 +109,7 @@ for stock in relative_strength_stocks:
         
         # If all conditions above are true, add stock to exportList USE CONCAT INSTEAD OF APPEND IN FUTURE
         if condition_1 and condition_2 and condition_3 and condition_4 and condition_5 and condition_6 and condition_7:
-            exportList = exportList.append({'Stock': stock, "RS_Rating": RS_Rating ,"50 Day MA": moving_average_50, "150 Day Ma": moving_average_150, "200 Day MA": moving_average_200, "52 Week Low": low_of_52week, "52 week High": high_of_52week}, ignore_index=True)
+            exportList = exportList.append({'Stock': stock, "RS_Rating": RS_Rating ,"Current Close": currentClose ,"50 Day MA": moving_average_50, "150 Day Ma": moving_average_150, "200 Day MA": moving_average_200, "52 Week Low": low_of_52week, "52 week High": high_of_52week}, ignore_index=True)
             print (stock + " made the Minervini requirements")
 
     except Exception as e:
@@ -118,7 +118,7 @@ for stock in relative_strength_stocks:
 
 # sort output table by descending RS values
 exportList = exportList.sort_values(by = 'RS_Rating', ascending = False)
-print('\n', exportList)
+print('\n', exportList, f'\nParsed {len(tickers)}')
 
 writer = ExcelWriter("mark-minervini-output.xlsx")
 exportList.to_excel(writer, "Output")

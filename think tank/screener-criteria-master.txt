@@ -71,3 +71,4 @@ Gamma
 Vega
 Theta
 Rho
+Sigma

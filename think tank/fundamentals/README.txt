@@ -39,8 +39,10 @@ V1 requirements:
     10. Industry
         (yfinance->tickerVariable.info['industry'])
 
+    11. Earnings Date
+        (Yahoo_fin->stockinfo -> data = get_quote_table("ticker", dict_result = False) -> data["Earnings Date"])
+
 # Description
-# Implements yfinance.info() and stockinfo.get_quote_table("ticker", dict_result = False)/get_stats_valuation("ticker")
 
 # si.get_quote_table("ticker", dict_result = False) returns the following (names match column names verbatum):
 # 1y Target Est

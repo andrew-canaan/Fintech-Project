@@ -15,7 +15,7 @@ V1 requirements:
         (df = web.get_data_yahoo('IBM', start_date, end_date) -> df['Volume'])
 
     4. Dividends Y/N 
-        (yfinance->tickerVariable.info['dividendRate ']) != 0 ?
+        (yfinance->tickerVariable.info['dividendRate']) != 0 ?
 
     5. Earnings Per Share (EPS (TTM): Yahoo_fin->get_quote_table())
         (yfinance->tickerVariable.info['trailingEps'])

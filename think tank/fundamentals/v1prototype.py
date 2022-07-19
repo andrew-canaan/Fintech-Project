@@ -26,11 +26,17 @@ yf.pdr_override()
 start_date = datetime.datetime.now() - datetime.timedelta(days = 365)
 end_date = datetime.date.today()
 
-tickers = si.tickers_nasdaq()
-tickers = tickers[0:100] 
-tickers = [item.replace(".", "-") for item in tickers]
+symbols = si.tickers_nasdaq()
+symbols = symbols[0:100] 
 
-index_used = '^IXIC' # index symbol for NASDAQ
+tickers = []
+
+# Replace '.' with '-', as well as construct a list of ticker objects.
+for symbol in symbols:
+    symbol.replace('.', '-')
+    tickers.append(yf.Ticker(symbol))
+
+index_used = '^IXIC' 
 index_data = web.get_data_yahoo(index_used, start_date, end_date)
 index_data["% Change"] = index_data["Adj Close"].pct_change()
 
@@ -38,17 +44,18 @@ screenedList = pd.DataFrame(columns = ['Stock', 'Industry', 'Sector', 'Price', '
                                       'P/E/G Ratio', 'Beta', 'Earnings Date', 'EPS'])
 
 for ticker in tickers:
+
+    # quote_table = si.get_quote_table(ticker, dict_result = False)
+
+    # earnings_date = str(quote_table["Earnings Date"])
+    # eps = quote_table["EPS (TTM)"]
+    # PE_ratio = quote_table["PE Ratio (TTM)"]
     try:
-        quote_table = si.get_quote_table(str(ticker), dict_result = False)
+        industry = ticker.info['industry']
 
-        earnings_date = str(quote_table["Earnings Date"])
-        eps = quote_table["EPS (TTM)"]
-        PE_ratio = quote_table["PE Ratio (TTM)"]
-        
     except Exception as e:
-        print(e)
-
-
+        print("Ticker: " + ticker.info['symbol'] + " Error: " + str(e))
+            
     # industry = ticker.info['industry']
     # sector = ticker.info['sector']
     # price = ticker.info['price']

@@ -75,19 +75,9 @@ V1 requirements:
 # Enterprise Value/EBITDA
 
 # .info() returns the following information (names match column names verbatum):
-# zip
 # sector
 # industry
-# fullTimeEmployees
-# longBusinessSummary (description of business)
-# city
-# phone
-# state
 # country
-# companyOfficers (lst)
-# wesbsite
-# maxAge (idek) 
-# address1
 # ebitdaMargins
 # profitMargins
 # trailingPE
@@ -113,31 +103,18 @@ V1 requirements:
 # earningsGrowth
 # currentRatio
 # returnOnAssets
-# numberOfAnalystOpinions
 # targetMeanPrice
 # debtToEquity
 # returnOnEquity
 # targetHighPrice
-# totalCash
-# totalDebt
-# totalRevenue
-# totalCashPerShare
-# financialCurrency
 # revenuePerShare
 # quickRatio
 # recommendationMean
 # exchange
 # shortName
 # longName
-# exchangeTimezoneName
-# exchangeTimezoneShortName
-# isesgPopulated
-# gmtOffSetMilliseconds
-# quoteType
 # symbol
-# messageBoardId
 # market
-# annualHoldingsTurnover
 # enterpriseToRevenue
 # beta3year
 # enterpriseToEbitda
@@ -148,44 +125,28 @@ V1 requirements:
 # forwardEps
 # revenueQuarterlyGrowth
 # sharesOutstanding
-# fundInceptionDate
 # annualReportExpenseRatio
-# totalAssets
 # bookValue
 # sharesShort
-# sharesPercentSharesOut
-# fundFamily
-# lastFiscalYearEnd
 # heldPercentInstitutions
 # netIncomeToCommon
 # trailingEps
 # lastDividendValue
-# SandP52WeekChange
 # priceToBook
 # heldPercentInsiders
-# nextFiscalYearEnd
 # yield
-# mostRecentQuarter
 # shortRatio
-# sharesShortPreviousMonthDate
 # floatShares
 # enterpriseValue
-# priceHint
 # threeYearAverageReturn
-# lastSplitDate
-# lastSplitFactor
-# legalType
 # lastDividendDate
 # morningStarOverallRating
 # earningsQuarterlyGrowth
 # priceToSalesTrailing12Months
 # dateShortInterest
 # ytdReturn
-# lastCapGain
 # shortPercentOfFloat
 # sharesShortPriorMonth
-# impliedSharesOutstanding
-# category
 # fiveYearAverageReturn
 # previousClose
 # regularMarketOpen
@@ -199,9 +160,7 @@ V1 requirements:
 # averageDailyVolume10Day
 # regularMarketPreviousClose
 # fiftyDayAverage
-# trailingAnnualDividendRate
 # open
-# toCurrency
 # averageVolume10days
 # expireDate
 # algorithm
@@ -211,8 +170,6 @@ V1 requirements:
 # currency
 # dayLow 
 # dayHigh
-# ask
-# askSize 
 # volume
 # regularMarketPrice
 # preMarketPrice

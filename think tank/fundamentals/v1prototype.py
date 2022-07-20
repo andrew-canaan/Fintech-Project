@@ -11,6 +11,7 @@
 #   Industry
 #   Volume (24h)
 #   Earnings Date
+#   Ex-Dividend Date
 
 from pandas_datareader import data as web
 from yahoo_fin import stock_info as si
@@ -21,49 +22,45 @@ import numpy as np
 import datetime
 import time
 import os
+
+from v1prototype_helpers import *
+
+start_time = time.time()
+
 yf.pdr_override()
+pd.set_option('display.width', 160)
+pd.set_option('display.max_columns', None)
+pd.set_option('display.max_rows', None)
 
 start_date = datetime.datetime.now() - datetime.timedelta(days = 365)
 end_date = datetime.date.today()
 
-symbols = si.tickers_nasdaq()
-symbols = symbols[0:100] 
-
 tickers = []
-
-# Replace '.' with '-', as well as construct a list of ticker objects.
+symbols = si.tickers_nasdaq()
+symbols = symbols[0:20] 
+ 
 for symbol in symbols:
-    symbol.replace('.', '-')
-    tickers.append(yf.Ticker(symbol))
+    if len(symbol) <= 4:
+        symbol.replace('.', '-')
+        tickers.append(yf.Ticker(symbol))
 
 index_used = '^IXIC' 
 index_data = web.get_data_yahoo(index_used, start_date, end_date)
 index_data["% Change"] = index_data["Adj Close"].pct_change()
 
-screenedList = pd.DataFrame(columns = ['Stock', 'Industry', 'Sector', 'Price', 'Volume (24h)', 'Market Cap', 'P/E Ratio', 
-                                      'P/E/G Ratio', 'Beta', 'Earnings Date', 'EPS'])
-
+screenedList = pd.DataFrame(columns = ['Stock', 'Industry', 'Sector', 'Price', 'Avg. Volume', 'Volume', 'Market Cap', 'Trailing P/E Ratio', 
+                                      'P/EG Ratio', 'Beta', 'Trailing E/PS', '12 mo Trailing P/S'])
 for ticker in tickers:
+    screenedList = grab_fundamentals(ticker, screenedList)
 
-    # quote_table = si.get_quote_table(ticker, dict_result = False)
+    time.sleep(0.01)
 
-    # earnings_date = str(quote_table["Earnings Date"])
-    # eps = quote_table["EPS (TTM)"]
-    # PE_ratio = quote_table["PE Ratio (TTM)"]
-    try:
-        industry = ticker.info['industry']
+writer = ExcelWriter("v1prototype.xlsx")
+screenedList.to_excel(writer, "Output")
+writer.save()
 
-    except Exception as e:
-        print("Ticker: " + ticker.info['symbol'] + " Error: " + str(e))
-            
-    # industry = ticker.info['industry']
-    # sector = ticker.info['sector']
-    # price = ticker.info['price']
-    # vol_24h = ticker.info['volume24Hr']
-    # market_cap = ticker.info['marketCap']
-    # PEG_ratio = ticker.info['pegRatio']
-    # beta = ticker.info['beta']
-
-    # screenedList.append({'Stock': ticker, 'Industry': industry, 'Sector': sector, 'Price': price, 'Volume (24h)': vol_24h, 
-    #                     'Market Cap': market_cap, 'P/E Ratio': PE_ratio, 'P/E/G Ratio': PEG_ratio, 'Beta': beta, 
-    #                     'Earnings Date': earnings_date, 'EPS': eps})
+print("Execution time: %s seconds" % (time.time() - start_time))
+# Graveyard:
+# data = pd.DataFrame.from_dict(tickers[0].info, orient = 'index', columns = ['Value'])
+# print(data)
+# quote_table = si.get_quote_table(ticker.info['symbol'], dict_result = True) THIS SHIT BROKEN AF FUCK GET_QUOTE_TABLE

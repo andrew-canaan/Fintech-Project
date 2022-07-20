@@ -13,11 +13,14 @@ import os
 yf.pdr_override()
 
 # Grab all the tickers off the NASDAQ index using stock info
-tickers = si.tickers_nasdaq()
+tickers = []
+symbols = si.tickers_nasdaq()
+symbols = symbols[0:100] # grab just the first 100 tickers out of 5k+ NASDAQ listings
 
-# replace any tickers that have a '.' with a '-' if they exist
-tickers = [item.replace(".", "-") for item in tickers]
-tickers = tickers[0:100] # grab just the first 100 tickers out of 5k+ NASDAQ listings
+for symbol in symbols:
+    if len(symbol) <= 4:
+        symbol.replace('.', '-')
+        tickers.append(symbol)
 
 # variables for later
 start_date = datetime.datetime.now() - datetime.timedelta(days = 365)

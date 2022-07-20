@@ -3,65 +3,28 @@ V1 requirements:
     A stock screener that shall screen NASDAQ listings with the following screening functionality:
 
     1. Market Cap 
-        (yfinance->tickerVariable.info['marketCap'])
 
     2. Current Price 
-        (yfinance->tickerVariable.info['currentPrice'])
 
     3. Volume
-        (yfinance->tickerVariable.info['volume24Hr'])
-        (yfinance->tickerVariable.info['volume'])
-        (yfinance->tickerVariable.info['volume24Hr'])
-        (df = web.get_data_yahoo('IBM', start_date, end_date) -> df['Volume'])
 
     4. Dividends Y/N 
-        (yfinance->tickerVariable.info['dividendRate']) != 0 ?
 
     5. Earnings Per Share (EPS (TTM): Yahoo_fin->get_quote_table())
-        (yfinance->tickerVariable.info['trailingEps'])
-        (yfinance->tickerVariable.info['forwardEps'])
 
     6. Price to Earnings Ratio (PE (TTM): Yahoo_fin->get_quote_table())
-        (yfinance->tickerVariable.info['trailingPE'])
-        (yfinance->tickerVariable.info['forwardPE'])
-        (yfinance->tickerVariable.info['forwardEps'])
 
     7. Price to Earnings to Growth Ratio (5 yr expected: Yahoo_fin->get_stats_valuation())
-        (yfinance->tickerVariable.info['pegRatio'])
 
     8. Beta (5Y Monthly: Yahoo_fin->get_quote_table())
-        (yfinance->tickerVariable.info['beta'])
-        (yfinance->tickerVariable.info['beta3year'])
 
     9. Sector 
-        (yfinance->tickerVariable.info['sector'])
 
     10. Industry
-        (yfinance->tickerVariable.info['industry'])
 
     11. Earnings Date
-        (Yahoo_fin->stockinfo -> data = get_quote_table("ticker", dict_result = False) -> data["Earnings Date"])
 
 # Description
-
-# si.get_quote_table("ticker", dict_result = False) returns the following (names match column names verbatum):
-# 1y Target Est
-# 52 Week Range
-# Ask
-# Avg. Volume
-# Beta (5Y Monthly)
-# Bid
-# Day's Range
-# EPS (TTM)
-# Earnings Date
-# Ex-Divident Date
-# Forward Dividend & Yield
-# Market Cap
-# Open
-# PE Ratio
-# Previous Close
-# Quote Price
-# Volume
 
 # si.get_stats_valuation("ticker") returns the following (names match column names verbatum):
 # Market Cap (intraday)
@@ -75,144 +38,156 @@ V1 requirements:
 # Enterprise Value/EBITDA
 
 # .info() returns the following information (names match column names verbatum):
-# zip
-# sector
-# industry
-# fullTimeEmployees
-# longBusinessSummary (description of business)
-# city
-# phone
-# state
-# country
-# companyOfficers (lst)
-# wesbsite
-# maxAge (idek) 
-# address1
-# ebitdaMargins
-# profitMargins
-# trailingPE
-# trailingPegRatio
-# grossMargins
-# operatingCashflow
-# revenueGrowth
-# operatingMargins
-# dividendRate
-# exDividendDate
-# ebitda
-# pegRatio
-# beta
-# forwardPE
-# averageVolume
-# marketCap
-# targetLowPrice
-# recommendationKey (returns string: buy or sell)
-# grossProfits
-# freeCashFlow
-# targetMedianPrice
-# currentPrice (CURRENT PRICE)
-# earningsGrowth
-# currentRatio
-# returnOnAssets
-# numberOfAnalystOpinions
-# targetMeanPrice
-# debtToEquity
-# returnOnEquity
-# targetHighPrice
-# totalCash
-# totalDebt
-# totalRevenue
-# totalCashPerShare
-# financialCurrency
-# revenuePerShare
-# quickRatio
-# recommendationMean
-# exchange
-# shortName
-# longName
-# exchangeTimezoneName
-# exchangeTimezoneShortName
-# isesgPopulated
-# gmtOffSetMilliseconds
-# quoteType
-# symbol
-# messageBoardId
-# market
-# annualHoldingsTurnover
-# enterpriseToRevenue
-# beta3year
-# enterpriseToEbitda
-# 52WeekChange
-# fiftyTwoWeekHigh
-# fiftyTwoWeekLow
-# morningStarRiskRating
-# forwardEps
-# revenueQuarterlyGrowth
-# sharesOutstanding
-# fundInceptionDate
-# annualReportExpenseRatio
-# totalAssets
-# bookValue
-# sharesShort
-# sharesPercentSharesOut
-# fundFamily
-# lastFiscalYearEnd
-# heldPercentInstitutions
-# netIncomeToCommon
-# trailingEps
-# lastDividendValue
-# SandP52WeekChange
-# priceToBook
-# heldPercentInsiders
-# nextFiscalYearEnd
-# yield
-# mostRecentQuarter
-# shortRatio
-# sharesShortPreviousMonthDate
-# floatShares
-# enterpriseValue
-# priceHint
-# threeYearAverageReturn
-# lastSplitDate
-# lastSplitFactor
-# legalType
-# lastDividendDate
-# morningStarOverallRating
-# earningsQuarterlyGrowth
-# priceToSalesTrailing12Months
-# dateShortInterest
-# ytdReturn
-# lastCapGain
-# shortPercentOfFloat
-# sharesShortPriorMonth
-# impliedSharesOutstanding
-# category
-# fiveYearAverageReturn
-# previousClose
-# regularMarketOpen
-# twoHundredDayAverage
-# trailingAnnualDividendYield
-# fiveYearAvgDividendYield
-# payoutRatio
-# volume24Hr
-# regularMarketDayHigh
-# navPrice
-# averageDailyVolume10Day
-# regularMarketPreviousClose
-# fiftyDayAverage
-# trailingAnnualDividendRate
-# open
-# toCurrency
-# averageVolume10days
-# expireDate
-# algorithm
-# circulatingSupply
-# regularMarketDayLow
-# regularMarketVolume
-# currency
-# dayLow 
-# dayHigh
-# ask
-# askSize 
-# volume
-# regularMarketPrice
-# preMarketPrice
+zip                                                                      100022
+sector                                                       Consumer Defensive
+fullTimeEmployees                                                           584
+longBusinessSummary           ATA Creativity Global, together with its subsi...
+city                                                                    Beijing
+phone                                                           86 10 6518 1133
+country                                                                   China
+companyOfficers                                                              []
+website                                                 https://www.atai.net.cn
+maxAge                                                                        1
+address1                                                         Building No. 2
+fax                                                             86 10 6517 9517
+industry                                          Education & Training Services
+address2                      East Gate, Floor 1 Jian Wai Soho No.39 Dong Sa...
+ebitdaMargins                                                          -0.19653
+profitMargins                                                          -0.14732
+grossMargins                                                            0.52812
+operatingCashflow                                                          None
+revenueGrowth                                                             0.121
+operatingMargins                                                       -0.29956
+ebitda                                                                -40633820
+targetLowPrice                                                               22
+recommendationKey                                                    strong_buy
+grossProfits                                                          104795550
+freeCashflow                                                               None
+targetMedianPrice                                                            22
+currentPrice                                                               1.38
+earningsGrowth                                                             None
+currentRatio                                                              0.253
+returnOnAssets                                                         -0.07383
+numberOfAnalystOpinions                                                       1
+targetMeanPrice                                                              22
+debtToEquity                                                             22.648
+returnOnEquity                                                         -0.16249
+targetHighPrice                                                              22
+totalCash                                                              62413832
+totalDebt                                                              39557444
+totalRevenue                                                          206758544
+totalCashPerShare                                                         1.988
+financialCurrency                                                           CNY
+revenuePerShare                                                           6.459
+quickRatio                                                                0.229
+recommendationMean                                                            1
+exchange                                                                    NGM
+shortName                                                 ATA Creativity Global
+longName                                                  ATA Creativity Global
+exchangeTimezoneName                                           America/New_York
+exchangeTimezoneShortName                                                   EDT
+isEsgPopulated                                                            False
+gmtOffSetMilliseconds                                                 -14400000
+quoteType                                                                EQUITY
+symbol                                                                     AACG
+messageBoardId                                                   finmb_39920439
+market                                                                us_market
+annualHoldingsTurnover                                                     None
+enterpriseToRevenue                                                       0.095
+beta3Year                                                                  None
+enterpriseToEbitda                                                       -0.482
+52WeekChange                                                          -0.595611
+morningStarRiskRating                                                      None
+forwardEps                                                                -1.32
+revenueQuarterlyGrowth                                                     None
+sharesOutstanding                                                      31598600
+fundInceptionDate                                                          None
+annualReportExpenseRatio                                                   None
+totalAssets                                                                None
+bookValue                                                                 5.481
+sharesShort                                                                4076
+sharesPercentSharesOut                                                   0.0001
+fundFamily                                                                 None
+lastFiscalYearEnd                                                    1640908800
+heldPercentInstitutions                                                  0.1697
+netIncomeToCommon                                                     -32742800
+trailingEps                                                              -0.153
+lastDividendValue                                                             6
+SandP52WeekChange                                                     -0.096818
+priceToBook                                                            0.251779
+heldPercentInsiders                                                     0.05489
+nextFiscalYearEnd                                                    1703980800
+yield                                                                      None
+mostRecentQuarter                                                    1648684800
+shortRatio                                                                 0.51
+sharesShortPreviousMonthDate                                         1653955200
+floatShares                                                             8808642
+beta                                                                   0.912303
+enterpriseValue                                                        19587230
+priceHint                                                                     4
+threeYearAverageReturn                                                     None
+lastSplitDate                                                              None
+lastSplitFactor                                                            None
+legalType                                                                  None
+lastDividendDate                                                     1535328000
+morningStarOverallRating                                                   None
+earningsQuarterlyGrowth                                                    None
+priceToSalesTrailing12Months                                           0.210903
+dateShortInterest                                                    1656547200
+pegRatio                                                                  -0.04
+ytdReturn                                                                  None
+forwardPE                                                             -1.045454
+lastCapGain                                                                None
+shortPercentOfFloat                                                        None
+sharesShortPriorMonth                                                       746
+impliedSharesOutstanding                                                      0
+category                                                                   None
+fiveYearAverageReturn                                                      None
+previousClose                                                               1.3
+regularMarketOpen                                                           1.3
+twoHundredDayAverage                                                    1.50985
+trailingAnnualDividendYield                                                   0
+payoutRatio                                                                   0
+volume24Hr                                                                 None
+regularMarketDayHigh                                                       1.38
+navPrice                                                                   None
+averageDailyVolume10Day                                                   16040
+regularMarketPreviousClose                                                  1.3
+fiftyDayAverage                                                          1.0912
+trailingAnnualDividendRate                                                    0
+open                                                                        1.3
+toCurrency                                                                 None
+averageVolume10days                                                       16040
+expireDate                                                                 None
+algorithm                                                                  None
+dividendRate                                                               None
+exDividendDate                                                       1535328000
+circulatingSupply                                                          None
+startDate                                                                  None
+regularMarketDayLow                                                         1.3
+currency                                                                    USD
+regularMarketVolume                                                       12828
+lastMarket                                                                 None
+maxSupply                                                                  None
+openInterest                                                               None
+marketCap                                                              43606068
+volumeAllCurrencies                                                        None
+strikePrice                                                                None
+averageVolume                                                             11736
+dayLow                                                                      1.3
+ask                                                                         1.4
+askSize                                                                     800
+volume                                                                    12828
+fiftyTwoWeekHigh                                                           4.27
+fromCurrency                                                               None
+fiveYearAvgDividendYield                                                   None
+fiftyTwoWeekLow                                                            0.88
+bid                                                                        1.31
+tradeable                                                                 False
+dividendYield                                                              None
+bidSize                                                                    4000
+dayHigh                                                                    1.38
+coinMarketCapLink                                                          None
+regularMarketPrice                                                         1.38
+preMarketPrice                                                             1.22
+logo_url                                  https://logo.clearbit.com/atai.net.cn

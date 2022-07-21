@@ -38,6 +38,8 @@ def grab_fundamentals(tickerObj, screenedList):
 
     if "volume" in tickerData.keys():
         volume = tickerData['volume']
+    else:
+        volume = None
 
     if "industry" in tickerData.keys():
         industry = tickerData['industry']

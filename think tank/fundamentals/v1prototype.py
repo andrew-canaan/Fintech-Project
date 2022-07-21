@@ -37,7 +37,7 @@ end_date = datetime.date.today()
 
 tickers = []
 symbols = si.tickers_nasdaq()
-symbols = symbols[0:20] 
+#symbols = symbols[0:20] 
  
 for symbol in symbols:
     if len(symbol) <= 4:

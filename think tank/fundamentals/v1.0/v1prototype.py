@@ -37,7 +37,7 @@ end_date = datetime.date.today()
 
 tickers = []
 symbols = si.tickers_nasdaq()
-#symbols = symbols[0:20] 
+symbols = symbols[0:100] 
  
 for symbol in symbols:
     if len(symbol) <= 4:
@@ -51,8 +51,8 @@ index_data["% Change"] = index_data["Adj Close"].pct_change()
 screenedList = pd.DataFrame(columns = ['Stock', 'Industry', 'Sector', 'Price', 'Avg. Volume', 'Volume', 'Market Cap', 'Trailing P/E Ratio', 
                                       'P/EG Ratio', 'Beta', 'Trailing E/PS', '12 mo Trailing P/S'])
 for ticker in tickers:
-    screenedList = grab_fundamentals(ticker, screenedList)
-
+    # screenedList = grab_fundamentals(ticker, screenedList)
+    grab_fundamentals(ticker, screenedList)
     time.sleep(0.01)
 
 writer = ExcelWriter("v1prototype.xlsx")

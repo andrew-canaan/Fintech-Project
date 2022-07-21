@@ -1,4 +1,6 @@
-This directory holds files that demonstrate how we can access/process data to satisfy V1 requirements for our application.
+This directory holds files that show my first attempt at a program that will grab the following fundamentals. Issue I ran into was that .info(), 
+get_quote_table(), and get_stats_valuation() calls proved to be way too slow for some reason.
+
 V1 requirements:
     A stock screener that shall screen NASDAQ listings with the following screening functionality:
 

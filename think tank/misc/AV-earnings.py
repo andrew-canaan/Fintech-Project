@@ -11,23 +11,21 @@ pd.set_option('display.max_rows', None)
 
 # JSON Version:
 # for at home: https://stackoverflow.com/questions/67277838/convert-alphavantage-api-response-to-dataframe
-url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=IBM&apikey=TJOCDKQ1PCX3BW7T'
+url = f'https://www.alphavantage.co/query?function=EARNINGS&symbol=IBM&apikey=TJOCDKQ1PCX3BW7T'
 response = requests.get(url)
 
-try:
-    response = requests.get(url)
+data = json.loads(response.text)
 
-    data = json.loads(response.text)
-    df = pd.DataFrame(data["Time Series (Daily)"])
+annual_earnings_data = pd.DataFrame(data['annualEarnings'])
+quarterly_earnings_data = pd.DataFrame(data['quarterlyEarnings'])
 
-    stock_data = df.T
+writer = ExcelWriter("annual-earnings-demo.xlsx")
+annual_earnings_data.to_excel(writer, "Output")
+writer.save()
 
-    writer = ExcelWriter("api-demo.xlsx")
-    stock_data.to_excel(writer, "Output")
-    writer.save()
-except Exception as e:
-    print("Error occurred: ", e)
-
+writer = ExcelWriter("quarterly-earnings-demo.xlsx")
+quarterly_earnings_data.to_excel(writer, "Output")
+writer.save()
 
 
 # Notes

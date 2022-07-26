@@ -9,8 +9,6 @@ pd.set_option('display.width', 160)
 pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', None)
 
-# JSON Version:
-# for at home: https://stackoverflow.com/questions/67277838/convert-alphavantage-api-response-to-dataframe
 url = f'https://www.alphavantage.co/query?function=EARNINGS&symbol=IBM&apikey=TJOCDKQ1PCX3BW7T'
 response = requests.get(url)
 

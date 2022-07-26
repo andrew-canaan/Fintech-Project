@@ -1,5 +1,6 @@
 # # My AlphaVantage API key! TJOCDKQ1PCX3BW7T
 from yahoo_fin import stock_info as si
+from pandas import ExcelWriter
 import pandas as pd
 import requests
 import json
@@ -17,9 +18,13 @@ try:
     response = requests.get(url)
 
     data = json.loads(response.text)
-    dataframe = pd.DataFrame(data["Time Series (Daily)"])
+    df = pd.DataFrame(data["Time Series (Daily)"])
 
-    print(dataframe)
+    stock_data = df.T
+
+    writer = ExcelWriter("api-demo.xlsx")
+    stock_data.to_excel(writer, "Output")
+    writer.save()
 except Exception as e:
     print("Error occurred: ", e)
 

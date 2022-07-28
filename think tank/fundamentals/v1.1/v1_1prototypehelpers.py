@@ -86,7 +86,7 @@ def GrabDailyPriceData(symbol, excelFlag):
 
     return stock_data
 
-def GrabCompanyEarning(symbol, excelFlag):
+def GrabCompanyEarnings(symbol, excelFlag):
     earnings = list()
 
     url = f'https://www.alphavantage.co/query?function=EARNINGS&symbol={symbol}&apikey=TJOCDKQ1PCX3BW7T'

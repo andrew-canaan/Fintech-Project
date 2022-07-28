@@ -16,13 +16,6 @@ CSV_URL = 'https://www.alphavantage.co/query?function=LISTING_STATUS&apikey=demo
 
 exportList = pd.DataFrame(columns=['Symbol', 'Name', 'Exchange', 'Asset Type'])
 
-# with requests.Session() as s:
-#     download = s.get(CSV_URL)
-#     decoded_content = download.content.decode('utf-8')
-
-#     df = pd.read_csv(decoded_content, delimiter = ',')
-#     print(df.tail(1))
-
 with requests.Session() as s:
     download = s.get(CSV_URL)
     decoded_content = download.content.decode('utf-8')

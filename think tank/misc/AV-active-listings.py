@@ -10,7 +10,7 @@ pd.set_option('display.max_rows', None)
 # https://requests.readthedocs.io/en/latest/user/advanced/
 # If no date is set, the API endpoint will return a list of active or delisted symbols as of the latest trading day
 # By default, state=active and the API will return a list of actively traded stocks and ETFs. Set state=delisted to query a list of delisted assets
-CSV_URL = 'https://www.alphavantage.co/query?function=LISTING_STATUS&apikey=demo'
+CSV_URL = 'https://www.alphavantage.co/query?function=LISTING_STATUS&apikey=TJOCDKQ1PCX3BW7T'
 
 exportList = pd.DataFrame(columns=['Symbol', 'Name', 'Exchange', 'Asset Type'])
 

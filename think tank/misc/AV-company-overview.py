@@ -1,6 +1,4 @@
 # # My AlphaVantage API key! TJOCDKQ1PCX3BW7T
-from yahoo_fin import stock_info as si
-from pandas import ExcelWriter
 import pandas as pd
 import requests
 import json
@@ -16,6 +14,6 @@ data = json.loads(response.text)
 
 overview_data = pd.DataFrame.from_dict(data, orient = 'index', columns = ['Value'])
 
-writer = ExcelWriter("company-overview-demo.xlsx")
+writer = pd.ExcelWriter("company-overview-demo.xlsx")
 overview_data.to_excel(writer, "Output")
 writer.save()

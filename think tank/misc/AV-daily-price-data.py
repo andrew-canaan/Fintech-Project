@@ -1,6 +1,4 @@
 # # My AlphaVantage API key! TJOCDKQ1PCX3BW7T
-from yahoo_fin import stock_info as si
-from pandas import ExcelWriter
 import pandas as pd
 import requests
 import json
@@ -20,7 +18,7 @@ df = pd.DataFrame(data["Time Series (Daily)"])
 # Transpose the data frame such that rows are dates, and columns are 'open', 'low', 'high', 'close'
 stock_data = df.T
 
-writer = ExcelWriter("daily-price-demo.xlsx")
+writer = pd.ExcelWriter("daily-price-demo.xlsx")
 stock_data.to_excel(writer, "Output")
 writer.save()
 

@@ -1,6 +1,4 @@
 # # My AlphaVantage API key! TJOCDKQ1PCX3BW7T
-from yahoo_fin import stock_info as si
-from pandas import ExcelWriter
 import pandas as pd
 import requests
 import json
@@ -17,10 +15,10 @@ data = json.loads(response.text)
 annual_earnings_data = pd.DataFrame(data['annualEarnings'])
 quarterly_earnings_data = pd.DataFrame(data['quarterlyEarnings'])
 
-writer = ExcelWriter("annual-earnings-demo.xlsx")
+writer = pd.ExcelWriter("annual-earnings-demo.xlsx")
 annual_earnings_data.to_excel(writer, "Output")
 writer.save()
 
-writer = ExcelWriter("quarterly-earnings-demo.xlsx")
+writer = pd.ExcelWriter("quarterly-earnings-demo.xlsx")
 quarterly_earnings_data.to_excel(writer, "Output")
 writer.save()

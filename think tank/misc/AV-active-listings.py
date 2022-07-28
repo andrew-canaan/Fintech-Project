@@ -27,6 +27,6 @@ with requests.Session() as s:
         if (len(row[0]) <= 4):
             exportList = exportList.append({'Symbol': row[0], 'Name': row[1], 'Exchange': row[2], 'Asset Type': row[3]}, ignore_index = True)
 
-writer = ExcelWriter("AV-active-listings.xlsx")
+writer = ExcelWriter("active-listings.xlsx")
 exportList.to_excel(writer, "Output")
 writer.save()

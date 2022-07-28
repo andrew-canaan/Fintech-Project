@@ -14,7 +14,8 @@ company_earnings = list()
 
 listings = FindActiveListings(excelOutput)
 
-# for item in listings:
+for item in listings:
+    print(item['Symbol'])
     # balance_sheets = GrabBalanceSheet(item['Symbol'], excelOutput)
     # company_overview = GrabCompanyOverview(item['Symbol'], excelOutput)
     # daily_price_history = GrabDailyPriceData(item['Symbol'], excelOutput)

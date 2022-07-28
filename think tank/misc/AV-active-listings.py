@@ -1,6 +1,4 @@
 # # My AlphaVantage API key! TJOCDKQ1PCX3BW7T
-from yahoo_fin import stock_info as si
-from pandas import ExcelWriter
 import pandas as pd
 import requests
 import csv
@@ -27,6 +25,6 @@ with requests.Session() as s:
         if (len(row[0]) <= 4):
             exportList = exportList.append({'Symbol': row[0], 'Name': row[1], 'Exchange': row[2], 'Asset Type': row[3]}, ignore_index = True)
 
-writer = ExcelWriter("active-listings.xlsx")
+writer = pd.ExcelWriter("active-listings.xlsx")
 exportList.to_excel(writer, "Output")
 writer.save()

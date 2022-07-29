@@ -20,7 +20,10 @@ def FindActiveListings(excelFlag):
 
         for row in my_list:
             if (len(row[0]) <= 4):
-                exportList = exportList.append({'Symbol': row[0], 'Name': row[1], 'Exchange': row[2], 'Asset Type': row[3]}, ignore_index = True)
+                try:
+                    exportList = exportList.append({'Symbol': row[0], 'Name': row[1], 'Exchange': row[2], 'Asset Type': row[3]}, ignore_index = True)
+                except Exception as e:
+                    print("\n", e)
 
     if excelFlag: 
         writer = pd.ExcelWriter("active-listings.xlsx")
@@ -40,7 +43,7 @@ def GrabBalanceSheet(symbol, excelFlag):
     annual_balance_sheet_data = pd.DataFrame(data['annualReports'])
     quarterly_balance_sheet_data = pd.DataFrame(data['quarterlyReports'])
 
-    balance_sheets.apppend(annual_balance_sheet_data)
+    balance_sheets.append(annual_balance_sheet_data)
     balance_sheets.append(quarterly_balance_sheet_data)
 
     if excelFlag:

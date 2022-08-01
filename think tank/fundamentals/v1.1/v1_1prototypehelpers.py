@@ -33,7 +33,7 @@ def FindActiveListings(excelFlag):
     return exportList
 
 def GrabBalanceSheet(symbol, excelFlag):
-    balance_sheets = list()
+    # balance_sheets = list()
 
     url = f'https://www.alphavantage.co/query?function=BALANCE_SHEET&symbol={symbol}&apikey=TJOCDKQ1PCX3BW7T'
     response = requests.get(url)
@@ -43,8 +43,8 @@ def GrabBalanceSheet(symbol, excelFlag):
     annual_balance_sheet_data = pd.DataFrame(data['annualReports'])
     quarterly_balance_sheet_data = pd.DataFrame(data['quarterlyReports'])
 
-    balance_sheets.append(annual_balance_sheet_data)
-    balance_sheets.append(quarterly_balance_sheet_data)
+    # balance_sheets.append(annual_balance_sheet_data)
+    # balance_sheets.append(quarterly_balance_sheet_data)
 
     if excelFlag:
         writer = pd.ExcelWriter("annual-balance-sheet-demo.xlsx")
@@ -55,7 +55,7 @@ def GrabBalanceSheet(symbol, excelFlag):
         quarterly_balance_sheet_data.to_excel(writer, "Output")
         writer.save()
 
-    return balance_sheets
+    return quarterly_balance_sheet_data, annual_balance_sheet_data
 
 def  GrabCompanyOverview(symbol, excelFlag):
     url = f'https://www.alphavantage.co/query?function=OVERVIEW&symbol={symbol}&apikey=TJOCDKQ1PCX3BW7T'
@@ -90,7 +90,7 @@ def GrabDailyPriceData(symbol, excelFlag):
     return stock_data
 
 def GrabCompanyEarnings(symbol, excelFlag):
-    earnings = list()
+    # earnings = list()
 
     url = f'https://www.alphavantage.co/query?function=EARNINGS&symbol={symbol}&apikey=TJOCDKQ1PCX3BW7T'
     response = requests.get(url)
@@ -100,8 +100,8 @@ def GrabCompanyEarnings(symbol, excelFlag):
     annual_earnings_data = pd.DataFrame(data['annualEarnings'])
     quarterly_earnings_data = pd.DataFrame(data['quarterlyEarnings'])
 
-    earnings.append(annual_earnings_data)
-    earnings.append(quarterly_earnings_data)
+    # earnings.append(annual_earnings_data)
+    # earnings.append(quarterly_earnings_data)
 
     if excelFlag:
         writer = pd.ExcelWriter("annual-earnings-demo.xlsx")
@@ -112,4 +112,4 @@ def GrabCompanyEarnings(symbol, excelFlag):
         quarterly_earnings_data.to_excel(writer, "Output")
         writer.save()
 
-    return earnings
+    return quarterly_earnings_data, annual_earnings_data

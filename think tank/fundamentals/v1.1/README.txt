@@ -5,24 +5,22 @@ Andrew Canaan
     - It will prompt the user for which criteria it would like to screen with, as well as whether the user
     wants to generate excel sheets.
     - The following are loose requirements for a V1 prototype:
-            1. Market Cap 
+            1. Market Cap CHECK
 
-            2. Current Price 
+            2. Current Price CHECK
 
-            3. Volume
+            3. Volume CHECK
 
-            4. Dividends Y/N 
+            4. Dividends Y/N CHECK (DIVIDEND DATE AND EX DIVIDEND DATE)
 
-            5. Earnings Per Share 
+            5. Earnings Per Share CHECK (CURRENT AND PER FISCAL YEAR)
 
-            6. Price to Earnings Ratio 
+            6. Price to Earnings Ratio CHECK
 
-            7. Price to Earnings to Growth Ratio 
+            7. Price to Earnings to Growth Ratio CHECK 
 
-            8. Beta 
+            8. Beta CHECK
 
-            9. Sector 
+            9. Sector CHECK
 
-            10. Industry
-
-            11. Earnings Date
+            10. Industry CHECK

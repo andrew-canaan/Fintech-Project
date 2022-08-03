@@ -21,6 +21,9 @@ Andrew Canaan
 
             8. Beta CHECK
 
+
+            Recommend against these for now.
+            
             9. Sector CHECK
 
             10. Industry CHECK

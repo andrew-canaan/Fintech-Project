@@ -9,8 +9,8 @@ plt.rcParams['figure.figsize'] = (20, 10)
 plt.style.use('fivethirtyeight')
 
 def get_historical_data(symbol, start_date = None):
-    api_key = open(r'api_key.txt')
-    api_url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol={symbol}&apikey={api_key}&outputsize=full'
+    #api_key = open(r'api_key.txt')
+    api_url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol={symbol}&apikey=TJOCDKQ1PCX3BW7T&outputsize=full'
     raw_df = requests.get(api_url).json()
     df = pd.DataFrame(raw_df[f'Time Series (Daily)']).T
     df = df.rename(columns = {'1. open': 'open', '2. high': 'high', '3. low': 'low', '4. close': 'close', '5. adjusted close': 'adj close', '6. volume': 'volume'})

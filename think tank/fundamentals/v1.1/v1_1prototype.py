@@ -7,14 +7,14 @@ start_time = time.time()
 screens = list() # Used to hold user input for which screens they wish to apply
 
 menu_options = {
-    Market Cap:    {active: False, greater: False, less: False, equalto: False, value: 0}
-    Current Price: {active: False, greater: False, less: False, equalto: False, value: 0} # Is screen greater than, less than, or equal to value 
-    Volume:        {active: False, greater: False, less: False, equalto: False, value: 0}
-    Dividends Y/N: {active: False, value: False} 
-    EPS:           {active: False, greater: False, less: False, equalto: False, value: 0}
-    P/E:           {active: False, greater: False, less: False, equalto: False, value: 0}
-    P/E/G:         {active: False, greater: False, less: False, equalto: False, value: 0}  
-    Beta:          {active: False, greater: False, less: False, equalto: False, value: 0}
+    "Market Cap":    {"active": False, "greater": False, "less": False, "equalto": False, "value": 0},
+    "Current Price": {"active": False, "greater": False, "less": False, "equalto": False, "value": 0}, # Is screen greater than, less than, or equal to value 
+    "Volume":        {"active": False, "greater": False, "less": False, "equalto": False, "value": 0},
+    "Dividends Y/N": {"active": False, "value": False},
+    "EPS":           {"active": False, "greater": False, "less": False, "equalto": False, "value": 0},
+    "P/E":           {"active": False, "greater": False, "less": False, "equalto": False, "value": 0},
+    "P/E/G":         {"active": False, "greater": False, "less": False, "equalto": False, "value": 0},  
+    "Beta":          {"active": False, "greater": False, "less": False, "equalto": False, "value": 0}
 }
 
 pd.set_option('display.width', 160)

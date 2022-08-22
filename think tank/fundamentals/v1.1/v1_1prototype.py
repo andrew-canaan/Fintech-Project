@@ -4,17 +4,18 @@ import time
 
 start_time = time.time()
 
-screens = list() # Used to hold user input for which screens they wish to apply
+config_list = list() # Used to hold user input for which screens they wish to apply. Form is a list of dicts?
 
-menu_options = {
-    Market Cap:    {active: False, greater: False, less: False, equalto: False, value: 0}
-    Current Price: {active: False, greater: False, less: False, equalto: False, value: 0} # Is screen greater than, less than, or equal to value 
-    Volume:        {active: False, greater: False, less: False, equalto: False, value: 0}
-    Dividends Y/N: {active: False, value: False} 
-    EPS:           {active: False, greater: False, less: False, equalto: False, value: 0}
-    P/E:           {active: False, greater: False, less: False, equalto: False, value: 0}
-    P/E/G:         {active: False, greater: False, less: False, equalto: False, value: 0}  
-    Beta:          {active: False, greater: False, less: False, equalto: False, value: 0}
+# Is screen greater than, less than, or equal to value 
+screen_config = {
+    "Current Price": {"active": False, "greater": False, "less": False, "equalto": False, "value": 0},
+    "Market Cap":    {"active": False, "greater": False, "less": False, "equalto": False, "value": 0},
+    "Volume":        {"active": False, "greater": False, "less": False, "equalto": False, "value": 0},
+    "Dividends Y/N": {"active": False, "value": False}, 
+    "EPS":           {"active": False, "greater": False, "less": False, "equalto": False, "value": 0},
+    "P/E":           {"active": False, "greater": False, "less": False, "equalto": False, "value": 0},
+    "P/E/G":         {"active": False, "greater": False, "less": False, "equalto": False, "value": 0},  
+    "Beta":          {"active": False, "greater": False, "less": False, "equalto": False, "value": 0},
 }
 
 pd.set_option('display.width', 160)
@@ -23,15 +24,24 @@ pd.set_option('display.max_rows', None)
 
 excelOutput = False # Does user want to generate an excel sheet?
 
-listings = FindActiveListings(excelOutput)
+while(True):
+    display_menu()
+    option = ''
+    try:
+        option = int(input('Enter your selection: '))
+    except:
+        print('Invalid input, please try again.')
+    process_options(option, screen_config, config_list)
 
-for ind in listings.index:
+#listings = FindActiveListings(excelOutput)
+
+# for ind in listings.index:
     
-    company_overview = GrabCompanyOverview(listings['Symbol'][ind], excelOutput)
-    quarterly_balance_sheets, annual_balance_sheets = GrabBalanceSheet(listings['Symbol'][ind], excelOutput)
-    daily_price_history = GrabDailyPriceData(listings['Symbol'][ind], excelOutput)
-    quarterly_company_earnings, annual_company_earnings = GrabCompanyEarnings(listings['Symbol'][ind], excelOutput)
-    break # BREAK PREVENTS ME FROM OVER-QUERYING API
+#     company_overview = GrabCompanyOverview(listings['Symbol'][ind], excelOutput)
+#     quarterly_balance_sheets, annual_balance_sheets = GrabBalanceSheet(listings['Symbol'][ind], excelOutput)
+#     daily_price_history = GrabDailyPriceData(listings['Symbol'][ind], excelOutput)
+#     quarterly_company_earnings, annual_company_earnings = GrabCompanyEarnings(listings['Symbol'][ind], excelOutput)
+#     break # BREAK PREVENTS ME FROM OVER-QUERYING API
 
 print("Execution time: %s seconds" % (time.time() - start_time))
 

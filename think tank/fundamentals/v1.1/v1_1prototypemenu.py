@@ -1,3 +1,5 @@
+import sys
+
 menu_options = {
     1: 'Option 1: Current Price',
     2: 'Option 2: Market Cap',
@@ -15,30 +17,31 @@ def display_menu():
     for key in menu_options.keys():
         print(menu_options[key])
 
-def process_options(option, screen_config, config_list):
+def process_options(option, screen_config):
     if option == 1:
-        screen_config, config_list = option1(screen_config, config_list)
+        screen_config= option1(screen_config)
     elif option == 2:
-        option2(screen_config, config_list)
+        option2(screen_config)
     elif option == 3:
-        option3(screen_config, config_list)  
+        option3(screen_config)  
     elif option == 4:
-        option4(screen_config, config_list)
+        option4(screen_config)
     elif option == 4:
-        option4(screen_config, config_list)
+        option4(screen_config)
     elif option == 5:
-        option5(screen_config, config_list)
+        option5(screen_config)
     elif option == 6:
-        option6(screen_config, config_list)
+        option6(screen_config)
     elif option == 7:
-        option7(screen_config, config_list)
+        option7(screen_config)
     elif option == 8:
-        option8(screen_config, config_list)
+        option8(screen_config)
     elif option == 9:
-        exit_menu(screen_config, config_list) 
+        exit_menu(screen_config) 
 
 # Appends menu option selection to screens list
-def option1(screen_config, config_list):
+def option1(screen_config):
+    user_val = 0
     while (True):
         option = ''
         try:
@@ -49,11 +52,12 @@ def option1(screen_config, config_list):
         if option == 'y' or option == 'Y' or option == 'yes' or option == 'Yes':
             # set current price in screen config to true
             screen_config['Current Price']['active'] = True
-        else
+            print("Successfully activated Current Price screen, standby...")
+        else:
             print("Exiting option 1...")
-            return
+            return screen_config
 
-        while(True)
+        while(True):
             # Grab user input for price and whether the filter should be for greater, less, or equal to that value
             try:
                 option = int(input("Please enter a price with which you would like to filter: "))
@@ -63,43 +67,44 @@ def option1(screen_config, config_list):
             if option < 0:
                 print("Warning, price value is a negative value...")
             screen_config['Current Price']['value'] = option
+            user_val = option
 
             try: 
                 option = int(input("Please enter whether you would like to filter price (1) greater than, (2) less than, (3) or equal to the target price (enter 1-3): "))
             except:
                 print("Invalid selection. Please try again.")
 
-            if option != 1 or option != 2 or option != 3:
+            if option != 1 and option != 2 and option != 3:
                 print("Please select an option 1, 2, or 3... Retrying.")
             elif option == 1:
                 screen_config['Current Price']['greater'] = True
-                config_list.append(screen_config['Current Price'])
-                return screen_config, config_list
+                print(f"Successfully applied screen for assets greater than ${user_val}!")
+                return screen_config
             elif option == 2:
                 screen_config['Current Price']['less'] = True
-                config_list.append(screen_config['Current Price'])
-                return screen_config, config_list
+                print(f"Successfully applied screen for assets less than ${user_val}!")
+                return screen_config
             elif option == 3:
                 screen_config['Current Price']['equalto'] = True
-                config_list.append(screen_config['Current Price'])
-                return screen_config, config_list
+                print(f"Successfully applied screen for assets equal to ${user_val}!")
+                return screen_config
 
 
 
 
-def option2(screen_config, config_list):
+def option2(screen_config):
     return 1
-def option3(screen_config, config_list):
+def option3(screen_config):
     return 1
-def option4(screen_config, config_list):
+def option4(screen_config):
     return 1
-def option5(screen_config, config_list):
+def option5(screen_config):
     return 1
-def option6(screen_config, config_list):
+def option6(screen_config):
     return 1
-def option7(screen_config, config_list):
+def option7(screen_config):
     return 1
-def option8(screen_config, config_list):
+def option8(screen_config):
     return 1
 def exit_menu():
     sys.exit(0)

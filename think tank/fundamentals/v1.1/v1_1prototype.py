@@ -4,8 +4,6 @@ import time
 
 start_time = time.time()
 
-config_list = list() # Used to hold user input for which screens they wish to apply. Form is a list of dicts?
-
 # Is screen greater than, less than, or equal to value 
 screen_config = {
     "Current Price": {"active": False, "greater": False, "less": False, "equalto": False, "value": 0},
@@ -25,14 +23,26 @@ pd.set_option('display.max_rows', None)
 excelOutput = False # Does user want to generate an excel sheet?
 
 while(True):
+    exit_code = False
     display_menu()
     option = ''
     try:
         option = int(input('Enter your selection: '))
     except:
         print('Invalid input, please try again.')
-    process_options(option, screen_config, config_list)
+    process_options(option, screen_config)
 
+    try:
+        option = str(input('Would you like to add additional screens? Y/N: '))
+    except:
+        print('Invalid input...')
+
+    if option == 'n' or option == 'N' or option == 'no' or option == 'No':
+        exit_code = True
+
+    if exit_code:
+        sys.exit(0)
+    exit_code = False
 #listings = FindActiveListings(excelOutput)
 
 # for ind in listings.index:

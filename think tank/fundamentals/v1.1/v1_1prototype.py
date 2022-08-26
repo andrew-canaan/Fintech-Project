@@ -30,7 +30,7 @@ while(True):
         option = int(input('Enter your selection: '))
     except:
         print('Invalid input, please try again.')
-    process_options(option, screen_config)
+    screen_config = process_options(option, screen_config)
 
     try:
         option = str(input('Would you like to add additional screens? Y/N: '))
@@ -41,8 +41,11 @@ while(True):
         exit_code = True
 
     if exit_code:
-        sys.exit(0)
+        print("Execution time: %s seconds" % (time.time() - start_time))
+        break
     exit_code = False
+
+print(screen_config)
 #listings = FindActiveListings(excelOutput)
 
 # for ind in listings.index:

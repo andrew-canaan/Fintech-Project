@@ -9,7 +9,7 @@ menu_options = {
     6: 'Option 6: Price to Earnings Ratio', 
     7: 'Option 7: Price to Earnings to Growth Ratio', 
     8: 'Option 8: Beta', 
-    9: 'Exit Program',
+    9: 'Option 9: Exit Program',
 }
 
 # Displays menu options
@@ -46,7 +46,8 @@ def process_options(option, screen_config):
         screen_config = option8(screen_config)
         return screen_config
     elif option == 9:
-        exit_menu(screen_config) 
+        print("Program terminated. Happy trading")
+        sys.exit(0)
 
 # Appends menu option selection to screens list
 def option1(screen_config):
@@ -183,15 +184,15 @@ def option3(screen_config):
                 print("Please select an option 1, 2, or 3... Retrying.")
             elif option == 1:
                 screen_config['Volume']['greater'] = True
-                print(f"Successfully applied screen for volumes greater than ${user_val}!")
+                print(f"Successfully applied screen for volumes greater than {user_val}!")
                 return screen_config
             elif option == 2:
                 screen_config['Volume']['less'] = True
-                print(f"Successfully applied screen for volumes less than ${user_val}!")
+                print(f"Successfully applied screen for volumes less than {user_val}!")
                 return screen_config
             elif option == 3:
                 screen_config['Volume']['equalto'] = True
-                print(f"Successfully applied screen for volumes equal to ${user_val}!")
+                print(f"Successfully applied screen for volumes equal to {user_val}!")
                 return screen_config
 
 def option4(screen_config):
@@ -220,7 +221,7 @@ def option4(screen_config):
 
             if option == 'y' or option == 'Y' or option == 'yes' or option == 'Yes':
                 screen_config['Dividends Y/N']['value'] = True
-                print("Successfully activated screen for dividend sharing companies, standby!")
+                print("Successfully activated screen for dividend sharing companies!")
             else:
                 print("Successfuly activated screen for non-dividend sharing companies!")
             
@@ -263,15 +264,15 @@ def option5(screen_config):
                 print("Please select an option 1, 2, or 3... Retrying.")
             elif option == 1:
                 screen_config['EPS']['greater'] = True
-                print(f"Successfully applied screen for EPS values greater than ${user_val}!")
+                print(f"Successfully applied screen for EPS values greater than {user_val}!")
                 return screen_config
             elif option == 2:
                 screen_config['EPS']['less'] = True
-                print(f"Successfully applied screen for EPS values less than ${user_val}!")
+                print(f"Successfully applied screen for EPS values less than {user_val}!")
                 return screen_config
             elif option == 3:
                 screen_config['EPS']['equalto'] = True
-                print(f"Successfully applied screen for EPS values equal to ${user_val}!")
+                print(f"Successfully applied screen for EPS values equal to {user_val}!")
                 return screen_config
 
 def option6(screen_config):
@@ -311,15 +312,15 @@ def option6(screen_config):
                 print("Please select an option 1, 2, or 3... Retrying.")
             elif option == 1:
                 screen_config['P/E']['greater'] = True
-                print(f"Successfully applied screen for P/E values greater than ${user_val}!")
+                print(f"Successfully applied screen for P/E values greater than {user_val}!")
                 return screen_config
             elif option == 2:
                 screen_config['P/E']['less'] = True
-                print(f"Successfully applied screen for P/E values less than ${user_val}!")
+                print(f"Successfully applied screen for P/E values less than {user_val}!")
                 return screen_config
             elif option == 3:
                 screen_config['P/E']['equalto'] = True
-                print(f"Successfully applied screen for P/E values equal to ${user_val}!")
+                print(f"Successfully applied screen for P/E values equal to {user_val}!")
                 return screen_config
 
 def option7(screen_config):
@@ -359,15 +360,15 @@ def option7(screen_config):
                 print("Please select an option 1, 2, or 3... Retrying.")
             elif option == 1:
                 screen_config['P/E/G']['greater'] = True
-                print(f"Successfully applied screen for P/E/G values greater than ${user_val}!")
+                print(f"Successfully applied screen for P/E/G values greater than {user_val}!")
                 return screen_config
             elif option == 2:
                 screen_config['P/E/G']['less'] = True
-                print(f"Successfully applied screen for P/E/G values less than ${user_val}!")
+                print(f"Successfully applied screen for P/E/G values less than {user_val}!")
                 return screen_config
             elif option == 3:
                 screen_config['P/E/G']['equalto'] = True
-                print(f"Successfully applied screen for P/E/G values equal to ${user_val}!")
+                print(f"Successfully applied screen for P/E/G values equal to {user_val}!")
                 return screen_config
 
 def option8(screen_config):
@@ -407,16 +408,13 @@ def option8(screen_config):
                 print("Please select an option 1, 2, or 3... Retrying.")
             elif option == 1:
                 screen_config['Beta']['greater'] = True
-                print(f"Successfully applied screen for Beta values greater than ${user_val}!")
+                print(f"Successfully applied screen for Beta values greater than {user_val}!")
                 return screen_config
             elif option == 2:
                 screen_config['Beta']['less'] = True
-                print(f"Successfully applied screen for Beta values less than ${user_val}!")
+                print(f"Successfully applied screen for Beta values less than {user_val}!")
                 return screen_config
             elif option == 3:
                 screen_config['Beta']['equalto'] = True
-                print(f"Successfully applied screen for Beta values equal to ${user_val}!")
+                print(f"Successfully applied screen for Beta values equal to {user_val}!")
                 return screen_config
-
-def exit_menu():
-    sys.exit(0)

@@ -45,7 +45,14 @@ while(True):
         break
     exit_code = False
 
+# Process the screen_config, and assign conditions
+screen_config_copy = screen_config.copy()
+for key in screen_config_copy.keys():
+    if screen_config[key]['active'] == False:
+        screen_config.pop(key)
+
 print(screen_config)
+
 #listings = FindActiveListings(excelOutput)
 
 # for ind in listings.index:

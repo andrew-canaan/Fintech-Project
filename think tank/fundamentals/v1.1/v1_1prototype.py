@@ -41,7 +41,6 @@ while(True):
         exit_code = True
 
     if exit_code:
-        print("Execution time: %s seconds" % (time.time() - start_time))
         break
     exit_code = False
 
@@ -51,17 +50,55 @@ for key in screen_config_copy.keys():
     if screen_config[key]['active'] == False:
         screen_config.pop(key)
 
-print(screen_config)
+listings = FindActiveListings(excelOutput)
+listingsToPop = list()
 
-#listings = FindActiveListings(excelOutput)
+# Clean listings for null values.
+for ind in listings.index:
+    if not listings['Name'][ind] or not listings['Symbol'][ind] or not listings['Exchange'][ind] or not listings['Asset Type'][ind]:
+        listingsToPop.append(ind)
 
-# for ind in listings.index:
+for ind in listingsToPop:
+    listings.drop([ind])
+
+for ind in listings.index:
+    company_overview = GrabCompanyOverview(listings['Symbol'][ind], excelOutput)
+    daily_price_history = GrabDailyPriceData(listings['Symbol'][ind], excelOutput)
+    quarterly_company_earnings = GrabCompanyEarnings(listings['Symbol'][ind], excelOutput)
+
+    # Check if each of our 8 potential criteria are active, if they are compare them in prio highest to lowest probability of filtering a asset.
+    # E.g. if price active, it is a high prio to filter.
+    if screen_config['Current Price']['Active'] == True:
+        asset_price = daily_price_history['4. close'].iloc[0] # Grab most recent (0th) closing price of given asset.
+        if screen_config['Current Price']['greater'] == True and asset_price < screen_config['Current Price']['value']:
+            continue
+        elif screen_config['Current Price']['less'] == True and asset_price > screen_config['Current Price']['value']:
+            continue
+        elif screen_config['Current Price']['equalto'] == True and asset_price != screen_config['Current Price']['value']:
+            continue
     
-#     company_overview = GrabCompanyOverview(listings['Symbol'][ind], excelOutput)
-#     quarterly_balance_sheets, annual_balance_sheets = GrabBalanceSheet(listings['Symbol'][ind], excelOutput)
-#     daily_price_history = GrabDailyPriceData(listings['Symbol'][ind], excelOutput)
-#     quarterly_company_earnings, annual_company_earnings = GrabCompanyEarnings(listings['Symbol'][ind], excelOutput)
-#     break # BREAK PREVENTS ME FROM OVER-QUERYING API
+    # This asset passed the first check, continue to check first if filter is active, then if asset passes that active filter. Add to subset at the end of all checks.
+
+    if screen_config['Volume']['Active'] == True:
+        asset_volume = daily_price_history['5. volume]'].iloc[0]
+        if screen_config['Volume']['greater'] == True and asset_volume < screen_config['Volume']['value']:
+            continue
+        if screen_config['Volume']['less'] == True and asset_volume > screen_config['Volume']['value']:
+            continue
+        if screen_config['Volume']['equalto'] == True and asset_volume != screen_config['Volume']['value']:
+            continue
+
+    # if screen_config['']['Active'] == True:
+    # if screen_config['']['Active'] == True:
+    # if screen_config['']['Active'] == True:
+    # if screen_config['']['Active'] == True:
+    # if screen_config['']['Active'] == True:
+    # if screen_config['']['Active'] == True:
+
+    # This call is commented because with the initial 8 critieria, we only need company overview, daily price hist, and quarterly company earnings
+    # quarterly_balance_sheets, annual_balance_sheets = GrabBalanceSheet(listings['Symbol'][ind], excelOutput)
+    break # BREAK PREVENTS ME FROM OVER-QUERYING API
+
 
 print("Execution time: %s seconds" % (time.time() - start_time))
 

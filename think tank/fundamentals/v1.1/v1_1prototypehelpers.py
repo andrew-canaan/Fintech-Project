@@ -33,8 +33,6 @@ def FindActiveListings(excelFlag):
     return exportList
 
 def GrabBalanceSheet(symbol, excelFlag):
-    # balance_sheets = list()
-
     url = f'https://www.alphavantage.co/query?function=BALANCE_SHEET&symbol={symbol}&apikey=TJOCDKQ1PCX3BW7T'
     response = requests.get(url)
 
@@ -42,9 +40,6 @@ def GrabBalanceSheet(symbol, excelFlag):
 
     annual_balance_sheet_data = pd.DataFrame(data['annualReports'])
     quarterly_balance_sheet_data = pd.DataFrame(data['quarterlyReports'])
-
-    # balance_sheets.append(annual_balance_sheet_data)
-    # balance_sheets.append(quarterly_balance_sheet_data)
 
     if excelFlag:
         writer = pd.ExcelWriter("annual-balance-sheet-demo.xlsx")
@@ -90,26 +85,23 @@ def GrabDailyPriceData(symbol, excelFlag):
     return stock_data
 
 def GrabCompanyEarnings(symbol, excelFlag):
-    # earnings = list()
-
+    # NOTE: I EXPLICITLY COMMENTED OUT THE RETURN OF ANNUAL EARNINGS, FOR PURPOSE OF THIS DEMO ONLY QUARTERLY WILL BE USED
     url = f'https://www.alphavantage.co/query?function=EARNINGS&symbol={symbol}&apikey=TJOCDKQ1PCX3BW7T'
     response = requests.get(url)
 
     data = json.loads(response.text)
 
-    annual_earnings_data = pd.DataFrame(data['annualEarnings'])
+    #annual_earnings_data = pd.DataFrame(data['annualEarnings'])
     quarterly_earnings_data = pd.DataFrame(data['quarterlyEarnings'])
-
-    # earnings.append(annual_earnings_data)
-    # earnings.append(quarterly_earnings_data)
 
     if excelFlag:
         writer = pd.ExcelWriter("annual-earnings-demo.xlsx")
-        annual_earnings_data.to_excel(writer, "Output")
+        #annual_earnings_data.to_excel(writer, "Output")
         writer.save()
 
         writer = pd.ExcelWriter("quarterly-earnings-demo.xlsx")
         quarterly_earnings_data.to_excel(writer, "Output")
         writer.save()
 
-    return quarterly_earnings_data, annual_earnings_data
+    #return quarterly_earnings_data, annual_earnings_data
+    return quarterly_earnings_data

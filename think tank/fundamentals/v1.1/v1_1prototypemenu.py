@@ -5,7 +5,7 @@ menu_options = {
     2: 'Option 2: Market Cap',
     3: 'Option 3: Volume',
     4: 'Option 4: Has Dividends', 
-    5: 'Option 5: Earnings Per Share:', 
+    5: 'Option 5: Quarterly Earnings Per Share:', 
     6: 'Option 6: Price to Earnings Ratio', 
     7: 'Option 7: Price to Earnings to Growth Ratio', 
     8: 'Option 8: Beta', 
@@ -232,13 +232,13 @@ def option5(screen_config):
     while (True):
         option = ''
         try:
-            option = str(input('Are you sure you would like to apply a screen for EPS (only one may be active)? Y/N: '))
+            option = str(input('Are you sure you would like to apply a screen for Qaurterly EPS (only one may be active)? Y/N: '))
         except:
             print("Invalid input, please try again.")
     
         if option == 'y' or option == 'Y' or option == 'yes' or option == 'Yes':
             screen_config['EPS']['active'] = True
-            print("Successfully activated EPS screen, standby...")
+            print("Successfully activated Quarterly EPS screen, standby...")
         else:
             print("Exiting option 5...")
             return screen_config
@@ -246,17 +246,17 @@ def option5(screen_config):
         while(True):
             # Grab user input for price and whether the filter should be for greater, less, or equal to that value
             try:
-                option = float(input("Please enter an EPS value with which you would like to filter: "))
+                option = float(input("Please enter an Quarterly EPS value with which you would like to filter: "))
             except:
                 print("Invalid value, please try again.")
 
             if option < 0:
-                print("Warning, EPS value is a negative value...")
+                print("Warning, Quarterly EPS value is a negative value...")
             screen_config['EPS']['value'] = option
             user_val = option
 
             try: 
-                option = int(input("Please enter whether you would like to filter EPS values (1) greater than, (2) less than, (3) or equal to the target EPS (enter 1-3): "))
+                option = int(input("Please enter whether you would like to filter Quarterly EPS values (1) greater than, (2) less than, (3) or equal to the target EPS (enter 1-3): "))
             except:
                 print("Invalid selection. Please try again.")
 
@@ -264,15 +264,15 @@ def option5(screen_config):
                 print("Please select an option 1, 2, or 3... Retrying.")
             elif option == 1:
                 screen_config['EPS']['greater'] = True
-                print(f"Successfully applied screen for EPS values greater than {user_val}!")
+                print(f"Successfully applied screen for Quarterly EPS values greater than {user_val}!")
                 return screen_config
             elif option == 2:
                 screen_config['EPS']['less'] = True
-                print(f"Successfully applied screen for EPS values less than {user_val}!")
+                print(f"Successfully applied screen for Quarterly EPS values less than {user_val}!")
                 return screen_config
             elif option == 3:
                 screen_config['EPS']['equalto'] = True
-                print(f"Successfully applied screen for EPS values equal to {user_val}!")
+                print(f"Successfully applied screen for Quarterly EPS values equal to {user_val}!")
                 return screen_config
 
 def option6(screen_config):

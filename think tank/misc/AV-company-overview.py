@@ -13,7 +13,5 @@ response = requests.get(url)
 data = json.loads(response.text)
 
 overview_data = pd.DataFrame.from_dict(data, orient = 'index', columns = ['Value'])
-
-writer = pd.ExcelWriter("company-overview-demo.xlsx")
-overview_data.to_excel(writer, "Output")
-writer.save()
+print(overview_data)
+print(overview_data.loc['MarketCapitalization', 'Value'])

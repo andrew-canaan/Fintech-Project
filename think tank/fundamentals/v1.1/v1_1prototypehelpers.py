@@ -38,8 +38,11 @@ def GrabBalanceSheet(symbol, excelFlag):
 
     data = json.loads(response.text)
 
-    annual_balance_sheet_data = pd.DataFrame(data['annualReports'])
-    quarterly_balance_sheet_data = pd.DataFrame(data['quarterlyReports'])
+    try:
+        annual_balance_sheet_data = pd.DataFrame(data['annualReports'])
+        quarterly_balance_sheet_data = pd.DataFrame(data['quarterlyReports'])
+    except Exception as e:
+        print(e)
 
     if excelFlag:
         writer = pd.ExcelWriter("annual-balance-sheet-demo.xlsx")
@@ -58,7 +61,10 @@ def  GrabCompanyOverview(symbol, excelFlag):
 
     data = json.loads(response.text)
 
-    overview_data = pd.DataFrame.from_dict(data, orient = 'index', columns = ['Value'])
+    try:
+        overview_data = pd.DataFrame.from_dict(data, orient = 'index', columns = ['Value'])
+    except Exception as e:
+        print(e)
 
     if excelFlag:
         writer = pd.ExcelWriter("company-overview-demo.xlsx")
@@ -72,10 +78,14 @@ def GrabDailyPriceData(symbol, excelFlag):
     response = requests.get(url)
 
     data = json.loads(response.text)
-    df = pd.DataFrame(data["Time Series (Daily)"])
+
+    try:
+        df = pd.DataFrame(data["Time Series (Daily)"])
+        stock_data = df.T
+    except Exception as e:
+        print(e)
 
     # Transpose the data frame such that rows are dates, and columns are 'open', 'low', 'high', 'close'
-    stock_data = df.T
 
     if excelFlag:
         writer = pd.ExcelWriter("daily-price-demo.xlsx")
@@ -92,12 +102,15 @@ def GrabCompanyEarnings(symbol, excelFlag):
     data = json.loads(response.text)
 
     #annual_earnings_data = pd.DataFrame(data['annualEarnings'])
-    quarterly_earnings_data = pd.DataFrame(data['quarterlyEarnings'])
+    try:
+        quarterly_earnings_data = pd.DataFrame(data['quarterlyEarnings'])
+    except Exception as e:
+        print(e)
 
     if excelFlag:
-        writer = pd.ExcelWriter("annual-earnings-demo.xlsx")
+        #writer = pd.ExcelWriter("annual-earnings-demo.xlsx")
         #annual_earnings_data.to_excel(writer, "Output")
-        writer.save()
+        #writer.save()
 
         writer = pd.ExcelWriter("quarterly-earnings-demo.xlsx")
         quarterly_earnings_data.to_excel(writer, "Output")

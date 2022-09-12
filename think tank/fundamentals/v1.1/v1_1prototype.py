@@ -44,12 +44,6 @@ while(True):
         break
     exit_code = False
 
-# Process the screen_config, and assign conditions
-screen_config_copy = screen_config.copy()
-for key in screen_config_copy.keys():
-    if screen_config[key]['active'] == False:
-        screen_config.pop(key)
-
 print("Collecting active stocks and ETFs standy...")
 listings = FindActiveListings(excelOutput)
 listingsToPop = list()
@@ -80,7 +74,7 @@ for ind in listings.index:
     # E.g. if price active, it is a high prio to filter.
     if screen_config['Current Price']['active'] == True:
         print("Checking most recent Closing Price against filter...")
-        asset_price = daily_price_history['4. close'].iloc[0] # Grab most recent (0th) closing price of given asset.
+        asset_price = float(daily_price_history['4. close'].iloc[0]) # Grab most recent (0th) closing price of given asset.
         if screen_config['Current Price']['greater'] == True and asset_price < screen_config['Current Price']['value']:
             continue
         elif screen_config['Current Price']['less'] == True and asset_price > screen_config['Current Price']['value']:
@@ -92,7 +86,7 @@ for ind in listings.index:
 
     if screen_config['Volume']['active'] == True:
         print("Checking Volume against filter...")
-        asset_volume = daily_price_history['5. volume]'].iloc[0]
+        asset_volume = float(daily_price_history['5. volume]'].iloc[0])
         if screen_config['Volume']['greater'] == True and asset_volume < screen_config['Volume']['value']:
             continue
         elif screen_config['Volume']['less'] == True and asset_volume > screen_config['Volume']['value']:
@@ -102,7 +96,7 @@ for ind in listings.index:
 
     if screen_config['Market Cap']['active'] == True:
         print("Checking Market Cap against filter...")
-        asset_market_cap = company_overview.loc['MarketCapitalization', 'Value']
+        asset_market_cap = float(company_overview.loc['MarketCapitalization', 'Value'])
         if screen_config['Market Cap']['greater'] == True and asset_market_cap < screen_config['Market Cap']['value']:
             continue
         elif screen_config['Market Cap']['less'] == True and asset_market_cap > screen_config['Market Cap']['value']:
@@ -112,7 +106,7 @@ for ind in listings.index:
 
     if screen_config['EPS']['active'] == True:
         print("Checking EPS against filter...")
-        asset_EPS = quarterly_company_earnings['reportedEPS'].iloc[0]
+        asset_EPS = float(quarterly_company_earnings['reportedEPS'].iloc[0])
         if screen_config['EPS']['greater'] == True and asset_EPS < screen_config['EPS']['value']:
             continue
         elif screen_config['EPS']['less'] == True and asset_EPS > screen_config['EPS']['value']:
@@ -122,7 +116,7 @@ for ind in listings.index:
 
     if screen_config['P/E']['active'] == True:
         print("Checking P/E against filter...")
-        asset_PEratio = company_overview.loc['PERatio', 'Value']
+        asset_PEratio = float(company_overview.loc['PERatio', 'Value'])
         if screen_config['P/E']['greater'] == True and asset_PEratio < screen_config['P/E']['value']:
             continue
         elif screen_config['P/E']['less'] == True and asset_PEratio > screen_config['P/E']['value']:
@@ -132,7 +126,7 @@ for ind in listings.index:
 
     if screen_config['P/E/G']['active'] == True:
         print("Checking P/E/G against filter...")
-        asset_PEGratio = company_overview.loc['PEGRatio', 'Value']
+        asset_PEGratio = float(company_overview.loc['PEGRatio', 'Value'])
         if screen_config['P/E/G']['greater'] == True and asset_PEGratio < screen_config['P/E/G']['value']:
             continue
         elif screen_config['P/E/G']['less'] == True and asset_PEGratio > screen_config['P/E/G']['value']:
@@ -142,7 +136,7 @@ for ind in listings.index:
 
     if screen_config['Beta']['active'] == True:
         print("Checking Beta against filter...")
-        asset_beta = company_overview.loc['Beta', 'Value']
+        asset_beta = float(company_overview.loc['Beta', 'Value'])
         if screen_config['Beta']['greater'] == True and asset_beta < screen_config['Beta']['value']:
             continue
         elif screen_config['Beta']['less'] == True and asset_beta > screen_config['Beta']['value']:

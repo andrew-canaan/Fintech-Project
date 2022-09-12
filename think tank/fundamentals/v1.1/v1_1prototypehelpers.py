@@ -63,15 +63,15 @@ def  GrabCompanyOverview(symbol, excelFlag):
 
     try:
         overview_data = pd.DataFrame.from_dict(data, orient = 'index', columns = ['Value'])
+        if excelFlag:
+            writer = pd.ExcelWriter("company-overview-demo.xlsx")
+            overview_data.to_excel(writer, "Output")
+            writer.save()
+
+        return overview_data
+
     except Exception as e:
-        print(e)
-
-    if excelFlag:
-        writer = pd.ExcelWriter("company-overview-demo.xlsx")
-        overview_data.to_excel(writer, "Output")
-        writer.save()
-
-    return overview_data
+        print(f"Failed to process {symbol} due to {e}")
 
 def GrabDailyPriceData(symbol, excelFlag):
     url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={symbol}&apikey=TJOCDKQ1PCX3BW7T'
@@ -81,18 +81,16 @@ def GrabDailyPriceData(symbol, excelFlag):
 
     try:
         df = pd.DataFrame(data["Time Series (Daily)"])
-        stock_data = df.T
+        stock_data = df.T     # Transpose the data frame such that rows are dates, and columns are 'open', 'low', 'high', 'close'
+        if excelFlag:
+            writer = pd.ExcelWriter("daily-price-demo.xlsx")
+            stock_data.to_excel(writer, "Output")
+            writer.save()
+
+        return stock_data
+
     except Exception as e:
-        print(e)
-
-    # Transpose the data frame such that rows are dates, and columns are 'open', 'low', 'high', 'close'
-
-    if excelFlag:
-        writer = pd.ExcelWriter("daily-price-demo.xlsx")
-        stock_data.to_excel(writer, "Output")
-        writer.save()
-
-    return stock_data
+        print(f"Failed to process {symbol} due to {e}")
 
 def GrabCompanyEarnings(symbol, excelFlag):
     # NOTE: I EXPLICITLY COMMENTED OUT THE RETURN OF ANNUAL EARNINGS, FOR PURPOSE OF THIS DEMO ONLY QUARTERLY WILL BE USED
@@ -104,17 +102,17 @@ def GrabCompanyEarnings(symbol, excelFlag):
     #annual_earnings_data = pd.DataFrame(data['annualEarnings'])
     try:
         quarterly_earnings_data = pd.DataFrame(data['quarterlyEarnings'])
+
+        if excelFlag:
+            #writer = pd.ExcelWriter("annual-earnings-demo.xlsx")
+            #annual_earnings_data.to_excel(writer, "Output")
+            #writer.save()
+
+            writer = pd.ExcelWriter("quarterly-earnings-demo.xlsx")
+            quarterly_earnings_data.to_excel(writer, "Output")
+            writer.save()
+
+        return quarterly_earnings_data
+
     except Exception as e:
-        print(e)
-
-    if excelFlag:
-        #writer = pd.ExcelWriter("annual-earnings-demo.xlsx")
-        #annual_earnings_data.to_excel(writer, "Output")
-        #writer.save()
-
-        writer = pd.ExcelWriter("quarterly-earnings-demo.xlsx")
-        quarterly_earnings_data.to_excel(writer, "Output")
-        writer.save()
-
-    #return quarterly_earnings_data, annual_earnings_data
-    return quarterly_earnings_data
+        print(f"Failed to process {symbol} due to {e}")

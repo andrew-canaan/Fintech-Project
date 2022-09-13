@@ -41,19 +41,20 @@ def GrabBalanceSheet(symbol, excelFlag):
     try:
         annual_balance_sheet_data = pd.DataFrame(data['annualReports'])
         quarterly_balance_sheet_data = pd.DataFrame(data['quarterlyReports'])
+
+        if excelFlag:
+            writer = pd.ExcelWriter("annual-balance-sheet-demo.xlsx")
+            annual_balance_sheet_data.to_excel(writer, "Output")
+            writer.save()
+
+            writer = pd.ExcelWriter("quarterly-balance-sheet-demo.xlsx")
+            quarterly_balance_sheet_data.to_excel(writer, "Output")
+            writer.save()
+
+        return quarterly_balance_sheet_data, annual_balance_sheet_data
+
     except Exception as e:
-        print(e)
-
-    if excelFlag:
-        writer = pd.ExcelWriter("annual-balance-sheet-demo.xlsx")
-        annual_balance_sheet_data.to_excel(writer, "Output")
-        writer.save()
-
-        writer = pd.ExcelWriter("quarterly-balance-sheet-demo.xlsx")
-        quarterly_balance_sheet_data.to_excel(writer, "Output")
-        writer.save()
-
-    return quarterly_balance_sheet_data, annual_balance_sheet_data
+        print(f"Failed to process {symbol} due to {e}")
 
 def  GrabCompanyOverview(symbol, excelFlag):
     url = f'https://www.alphavantage.co/query?function=OVERVIEW&symbol={symbol}&apikey=TJOCDKQ1PCX3BW7T'

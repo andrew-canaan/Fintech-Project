@@ -20,7 +20,7 @@ pd.set_option('display.width', 160)
 pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', None)
 
-excelOutput = False # Does user want to generate an excel sheet?
+excelOutput = True # Does user want to generate an excel sheet?
 
 while(True):
     exit_code = False
@@ -60,9 +60,10 @@ for ind in listingsToPop:
 
 count = 0
 for ind in listings.index:
-    if count >= 50:
+    if count >= 25:
         break
 
+    time.sleep(25)
     print(f"Grabbing fundamental data for {listings['Symbol'][ind]}...")
     company_overview = GrabCompanyOverview(listings['Symbol'][ind], excelOutput)
     daily_price_history = GrabDailyPriceData(listings['Symbol'][ind], excelOutput)
@@ -154,6 +155,7 @@ for ind in listings.index:
 
     # If the asset made it this far, it passed all applicable filters. Add it to return list.
     listingsToReturn.append(listings['Symbol'][ind])
+    print(listingsToReturn)
 
     # This call is commented because with the initial 8 critieria, we only need company overview, daily price hist, and quarterly company earnings
     # quarterly_balance_sheets, annual_balance_sheets = GrabBalanceSheet(listings['Symbol'][ind], excelOutput)

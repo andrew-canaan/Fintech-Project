@@ -163,12 +163,12 @@ for ind in listings.index:
 
     # If the asset made it this far, it passed all applicable filters. Add it to return list.
     listingsToReturn.append(listings['Symbol'][ind])
-    print(listingsToReturn)
 
     # This call is commented because with the initial 8 critieria, we only need company overview, daily price hist, and quarterly company earnings
     # quarterly_balance_sheets, annual_balance_sheets = GrabBalanceSheet(listings['Symbol'][ind], excelOutput)
     break # BREAK PREVENTS ME FROM OVER-QUERYING API
 
+print(listingsToReturn)
 print("Execution time: %s seconds" % (time.time() - start_time))
 
 # Grab company overview, daily price hist, and quarterly earnings for A with demos in misc

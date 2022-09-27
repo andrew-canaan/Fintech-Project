@@ -63,7 +63,7 @@ for ind in listings.index:
     if count >= 25:
         break
 
-    #time.sleep(25)
+    #time.sleep(30)
     print(f"Grabbing fundamental data for {listings['Symbol'][ind]}...")
     company_overview = GrabCompanyOverview(listings['Symbol'][ind], excelOutput)
     daily_price_history = GrabDailyPriceData(listings['Symbol'][ind], excelOutput)
@@ -171,8 +171,8 @@ for ind in listings.index:
 
 print("Execution time: %s seconds" % (time.time() - start_time))
 
-# Grab company overview, daily price hist, and quarterly earnings for A with demos in misc
-# View those excel sheets and gather real information such as:
+# Grab company overview, daily price hist, and quarterly earnings for "A"
+# View those excel sheets and gather information from most recent close (must be same day?) information such as:
 # price > 121.6
 # volume > 1,040,449
 # market cap > 36,208,771,000

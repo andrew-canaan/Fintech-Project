@@ -27,3 +27,19 @@ Andrew Canaan
             9. Sector CHECK
 
             10. Industry CHECK
+
+Andrew Canaan
+27 September 2022
+
+    - Demo works for Agilent Technologies, and serves as a proof of concept.
+    - Screens the user can apply inclue:
+        - Market Cap
+        - Most recent closing price 
+        - Volume
+        - Dividends Y/N 
+        - EPS (quarterly, annual is very easy to add back in)
+        - P/E
+        - P/E/G 
+        - Beta
+    - The UI is very brittle, but hey it works on my machine >:-)
+    - Next hurdle is how to deal with the API limit... Would take 2h+ to process all 10k listings... Yikes.

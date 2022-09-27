@@ -163,23 +163,23 @@ for ind in listings.index:
 
     # If the asset made it this far, it passed all applicable filters. Add it to return list.
     listingsToReturn.append(listings['Symbol'][ind])
+    print(listingsToReturn)
 
     # This call is commented because with the initial 8 critieria, we only need company overview, daily price hist, and quarterly company earnings
     # quarterly_balance_sheets, annual_balance_sheets = GrabBalanceSheet(listings['Symbol'][ind], excelOutput)
     break # BREAK PREVENTS ME FROM OVER-QUERYING API
 
-print(listingsToReturn)
 print("Execution time: %s seconds" % (time.time() - start_time))
 
 # Grab company overview, daily price hist, and quarterly earnings for A with demos in misc
 # View those excel sheets and gather real information such as:
-# price > 135
-# volume > 1,800,000
-# market cap > 41,400,000,000
-# EPS > 2.2
-# P/E > 31
-# P/E/G > 2.2
-# beta > 1
+# price > 121.6
+# volume > 1,040,449
+# market cap > 36,208,771,000
+# EPS > 1.34
+# P/E > 27.92
+# P/E/G > 2.046
+# beta > 1.067
 # dividend -> yes
 
 # then set up a filter to match that info and verify that A is added to listings to return

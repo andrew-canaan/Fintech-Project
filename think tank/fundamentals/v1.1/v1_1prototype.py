@@ -63,7 +63,7 @@ for ind in listings.index:
     if count >= 25:
         break
 
-    #time.sleep(30)
+    #time.sleep(25)
     print(f"Grabbing fundamental data for {listings['Symbol'][ind]}...")
     company_overview = GrabCompanyOverview(listings['Symbol'][ind], excelOutput)
     daily_price_history = GrabDailyPriceData(listings['Symbol'][ind], excelOutput)
@@ -163,22 +163,21 @@ for ind in listings.index:
 
     # If the asset made it this far, it passed all applicable filters. Add it to return list.
     listingsToReturn.append(listings['Symbol'][ind])
-    print(listingsToReturn)
 
     # This call is commented because with the initial 8 critieria, we only need company overview, daily price hist, and quarterly company earnings
     # quarterly_balance_sheets, annual_balance_sheets = GrabBalanceSheet(listings['Symbol'][ind], excelOutput)
     break # BREAK PREVENTS ME FROM OVER-QUERYING API
-
+print(listingsToReturn)
 print("Execution time: %s seconds" % (time.time() - start_time))
 
-# Grab company overview, daily price hist, and quarterly earnings for "A"
-# View those excel sheets and gather information from most recent close (must be same day?) information such as:
-# price > 121.6
-# volume > 1,040,449
-# market cap > 36,208,771,000
+# Grab company overview, daily price hist, and quarterly earnings for A with demos in misc
+# View those excel sheets and gather real information such as:
+# price > 121.55
+# volume > 1,624,289
+# market cap > 35,983,782,000
 # EPS > 1.34
-# P/E > 27.92
-# P/E/G > 2.046
+# P/E > 27.75
+# P/E/G > 2.024
 # beta > 1.067
 # dividend -> yes
 

@@ -43,11 +43,11 @@ def GrabBalanceSheet(symbol, excelFlag):
         quarterly_balance_sheet_data = pd.DataFrame(data['quarterlyReports'])
 
         if excelFlag:
-            writer = pd.ExcelWriter("annual-balance-sheet-demo.xlsx")
+            writer = pd.ExcelWriter("annual-balance-sheet.xlsx")
             annual_balance_sheet_data.to_excel(writer, "Output")
             writer.save()
 
-            writer = pd.ExcelWriter("quarterly-balance-sheet-demo.xlsx")
+            writer = pd.ExcelWriter("quarterly-balance-sheet.xlsx")
             quarterly_balance_sheet_data.to_excel(writer, "Output")
             writer.save()
 
@@ -65,7 +65,7 @@ def  GrabCompanyOverview(symbol, excelFlag):
     try:
         overview_data = pd.DataFrame.from_dict(data, orient = 'index', columns = ['Value'])
         if excelFlag:
-            writer = pd.ExcelWriter("company-overview-demo.xlsx")
+            writer = pd.ExcelWriter("company-overview.xlsx")
             overview_data.to_excel(writer, "Output")
             writer.save()
 
@@ -84,7 +84,7 @@ def GrabDailyPriceData(symbol, excelFlag):
         df = pd.DataFrame(data["Time Series (Daily)"])
         stock_data = df.T     # Transpose the data frame such that rows are dates, and columns are 'open', 'low', 'high', 'close'
         if excelFlag:
-            writer = pd.ExcelWriter("daily-price-demo.xlsx")
+            writer = pd.ExcelWriter("daily-price.xlsx")
             stock_data.to_excel(writer, "Output")
             writer.save()
 
@@ -109,7 +109,7 @@ def GrabCompanyEarnings(symbol, excelFlag):
             #annual_earnings_data.to_excel(writer, "Output")
             #writer.save()
 
-            writer = pd.ExcelWriter("quarterly-earnings-demo.xlsx")
+            writer = pd.ExcelWriter("quarterly-earnings.xlsx")
             quarterly_earnings_data.to_excel(writer, "Output")
             writer.save()
 

@@ -58,18 +58,12 @@ for ind in listingsToPop:
     listings.drop([ind])
     print(f"Removing bad element with index {ind}")
 
-count = 0
 for ind in listings.index:
-    if count >= 25:
-        break
-
     #time.sleep(25)
     print(f"Grabbing fundamental data for {listings['Symbol'][ind]}...")
     company_overview = GrabCompanyOverview(listings['Symbol'][ind], excelOutput)
     daily_price_history = GrabDailyPriceData(listings['Symbol'][ind], excelOutput)
     quarterly_company_earnings = GrabCompanyEarnings(listings['Symbol'][ind], excelOutput)
-
-    count = count + 3
 
     # Check if each of our 8 potential criteria are active, if they are compare them in prio highest to lowest probability of filtering a asset.
     # E.g. if price active, it is a high prio to filter.
@@ -167,6 +161,7 @@ for ind in listings.index:
     # This call is commented because with the initial 8 critieria, we only need company overview, daily price hist, and quarterly company earnings
     # quarterly_balance_sheets, annual_balance_sheets = GrabBalanceSheet(listings['Symbol'][ind], excelOutput)
     break # BREAK PREVENTS ME FROM OVER-QUERYING API
+    
 print(listingsToReturn)
 print("Execution time: %s seconds" % (time.time() - start_time))
 

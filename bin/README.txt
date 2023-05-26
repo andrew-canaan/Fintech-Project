@@ -1,7 +1,7 @@
 Andrew Canaan
 29 July 2022
 
-    - This program is the second iteration of Andrew Canaan and Alex Brennan's stock screening prototype. 
+    - This program is the second iteration of Andrew Canaan's stock screening prototype. 
     - It will prompt the user for which criteria it would like to screen with, as well as whether the user
     wants to generate excel sheets.
     - The following are loose requirements for a V1 prototype:
@@ -41,5 +41,3 @@ Andrew Canaan
         - P/E
         - P/E/G 
         - Beta
-    - The UI is very brittle, but hey it works on my machine >:-)
-    - Next hurdle is how to deal with the API limit... Would take 2h+ to process all 10k listings... Yikes.
